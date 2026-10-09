@@ -229,3 +229,55 @@ class UnsupportedScopeTests(unittest.TestCase):
         gateway=BookingGateway();session=Session(gateway,Scripted(Interpretation('book',specialty='neurology')),ledger=ActionLedger())
         view=session.submit('book neurology','one')
         self.assertEqual(view.state,'assistance');self.assertIn('supported',view.text.lower());self.assertEqual(gateway.calls,[])
+
+class PersonaBehaviorTests(unittest.TestCase):
+    """Pinned Jules/Ellie-Rae/Morgan-Rae/Sam-Rae hypothesis checks."""
+    def test_invalid_number_keeps_current_choices_and_invalidates_old_consent(self):
+        gateway=BookingGateway()
+        model=Scripted(Interpretation('book',specialty='primary_care',phone=P.phone,dob=P.dob),Interpretation('unclear',slot_choice='1'),Interpretation('unclear',slot_choice='99'),Interpretation('unclear'))
+        session=Session(gateway,model,ActionLedger())
+        session.submit('book','start');session.submit('1','select')
+        view=session.submit('99','invalid')
+        self.assertEqual(view.state,'slots');self.assertEqual(view.slots,(S,S2))
+        self.assertIn('1.',view.text);self.assertIn('2.',view.text)
+        self.assertIsNone(session.proposal)
+        session.submit('yes','old-consent')
+        self.assertFalse(any(c[0]=='book' for c in gateway.calls))
+        self.assertEqual(sum(c[0]=='patients' for c in gateway.calls),1)
+
+    def test_failed_interpretation_cannot_preserve_a_confirmable_proposal(self):
+        gateway=BookingGateway()
+        model=Scripted(Interpretation('book',specialty='primary_care',phone=P.phone,dob=P.dob),Interpretation('unclear',slot_choice='1'),ValueError('private-model-detail'),Interpretation('unclear'))
+        session=Session(gateway,model,ActionLedger())
+        session.submit('book','start');session.submit('1','select')
+        failed=session.submit('change preference','failed')
+        self.assertIsNone(session.proposal);self.assertIsNone(failed.proposal)
+        self.assertNotIn('private-model-detail',failed.text)
+        session.submit('yes','old-consent')
+        self.assertFalse(any(c[0]=='book' for c in gateway.calls))
+
+    def test_support_context_separates_known_missing_outcome_without_private_values(self):
+        gateway=BookingGateway()
+        model=Scripted(Interpretation('book',specialty='primary_care',location='downtown',phone=P.phone),Interpretation('human'))
+        session=Session(gateway,model,ActionLedger())
+        session.submit('book','start');view=session.submit('I need staff help','help')
+        self.assertIn('Known:',view.text);self.assertIn('primary_care',view.text)
+        self.assertIn('Missing:',view.text);self.assertIn('date of birth',view.text)
+        self.assertIn('Booking outcome: not attempted',view.text)
+        for private in (P.phone,P.dob,P.patient_id,P.zip_code):self.assertNotIn(private,view.text)
+        self.assertIn('No handoff has been queued',view.text)
+        self.assertEqual(gateway.calls,[])
+
+    def test_support_context_retains_actual_booking_outcome(self):
+        for error,outcome in ((None,'completed'),(APIError('unavailable',503),'known rejected'),(APIError('transport',unknown=True),'unknown')):
+            with self.subTest(outcome=outcome):
+                gateway=BookingGateway(error=error)
+                model=Scripted(Interpretation('book',specialty='primary_care',phone=P.phone,dob=P.dob),Interpretation('unclear',slot_choice='1'),Interpretation('unclear'),Interpretation('human'))
+                session=Session(gateway,model,ActionLedger())
+                session.submit('book','start');session.submit('1','select');session.submit('yes','consent')
+                calls=list(gateway.calls);view=session.submit('staff help','help')
+                self.assertIn('Booking outcome: '+outcome,view.text)
+                self.assertEqual(view.outcome,outcome.replace(' ','_'))
+                self.assertEqual(gateway.calls,calls)
+                self.assertIn('No handoff has been queued',view.text)
+                if outcome=='unknown':self.assertIn('Do not retry',view.text)

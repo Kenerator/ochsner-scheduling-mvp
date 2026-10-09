@@ -23,7 +23,8 @@ class Session:
     def _clear(self):
         self.preferences=Preferences(); self.phone=None; self.dob=None; self.zip=None
         self.patient=None; self.candidates=(); self.slots=(); self.proposal=None
-        self.appointment=None; self.intent='unclear'; self._searched=False
+        self.appointment=None; self._booking_outcome='not_attempted'
+        self.intent='unclear'; self._searched=False
         self._no_matches=0; self._zip_attempts=0; self._excluded=set()
 
     @property
@@ -103,6 +104,9 @@ class Session:
                   'medical_advice':'I cannot provide medical advice or triage.',
                   'unsupported':'That request is outside this demonstration.',
                   'appointment_lookup':'Existing appointment lookup is not supported in this demonstration.'}[item.intent]
+            if item.intent=='human':
+                message,outcome=self._support_context()
+                return self._show(lead+'\n'+message+'\n'+ASSISTANCE,'assistance',reason='unsupported',outcome=outcome,appointment=self.appointment if outcome=='completed' else None)
             return self._show(lead+' '+ASSISTANCE,'assistance',reason='unsupported')
         old_preferences=self.preferences
         updates={key:getattr(item,key) for key in ('specialty','location','start_date','end_date','appointment_type') if getattr(item,key) is not None}
@@ -122,6 +126,7 @@ class Session:
                         self.zip=None
         if identity_changed or changed:
             self.proposal=None; self.slots=(); self.appointment=None; self._excluded.clear()
+            self._booking_outcome='not_attempted'
         if item.intent!='unclear': self.intent=item.intent
         if self.intent=='provider_lookup':
             self.proposal=None
@@ -178,6 +183,25 @@ class Session:
         if item.slot_choice is not None: return self._select(item.slot_choice)
         return self._show('Choose a currently displayed slot by number.\n'+self._slot_list(),'slots',slots=self.slots)
 
+    def _support_context(self):
+        # A local user-readable summary, not a transfer. Never project private
+        # matching values/candidates or let presentation erase an uncertain write.
+        known=[f'{name} {value}' for name,value in (
+            ('specialty',self.preferences.specialty),('location',self.preferences.location),
+            ('start date',self.preferences.start_date),('end date',self.preferences.end_date)) if value]
+        if self.patient is not None: known.append('synthetic identity matched')
+        missing=[]
+        if not self.preferences.specialty: missing.append('specialty')
+        if not self.phone: missing.append('phone number')
+        if not self.dob: missing.append('date of birth')
+        if self.phone and self.dob and self.patient is None: missing.append('resolved patient match')
+        outcome='unknown' if self.ledger.unknown else self._booking_outcome
+        lines=['Known: '+('; '.join(known) or 'no supported scheduling preferences yet')+'.',
+               'Missing: '+(', '.join(missing) or 'no required matching fields; staff must verify any further action')+'.',
+               'Booking outcome: '+outcome.replace('_',' ')+'.']
+        if outcome=='unknown': lines.append(UNKNOWN)
+        return '\n'.join(lines),outcome
+
     def _slot_list(self):
         return '\n'.join(f'{n}. {slot_description(slot)}' for n,slot in enumerate(self.slots,1))
 
@@ -198,7 +222,8 @@ class Session:
             if not matching_appointment(appointment,proposal): raise APIError('bad_response',201,unknown=True)
         except BaseException as error:
             unknown=not isinstance(error,APIError) or error.unknown
-            self.ledger.resolve(proposal.proposal_id,'unknown' if unknown else 'known_rejected')
+            self._booking_outcome='unknown' if unknown else 'known_rejected'
+            self.ledger.resolve(proposal.proposal_id,self._booking_outcome)
             self.proposal=None
             if not isinstance(error,Exception): raise
             if unknown: return self._show(UNKNOWN,'unknown',outcome='unknown')
@@ -207,6 +232,7 @@ class Session:
                 self.slots=tuple(s for s in self._call('availability',self.gateway.availability,self.patient.patient_id,self.preferences) if s.slot_id not in self._excluded)
                 return self._show('That slot was taken. No appointment was created. Choose a fresh option and confirm again.\n'+(self._slot_list() if self.slots else 'No alternative slots remain. '+ASSISTANCE),'slots' if self.slots else 'empty',slots=self.slots,outcome='known_rejected')
             return self._show('The service rejected this booking; no appointment was created. '+ASSISTANCE,'assistance',outcome='known_rejected')
+        self._booking_outcome='completed'
         self.ledger.resolve(proposal.proposal_id,'completed')
         self.appointment=appointment; self.proposal=None; self.slots=()
         return self._show('Booked appointment '+appointment.appointment_id+': '+slot_description(proposal.slot)+'.','completed',appointment=appointment,outcome='completed')
