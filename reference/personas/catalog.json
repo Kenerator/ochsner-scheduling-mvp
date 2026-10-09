@@ -1,131 +1,333 @@
 {
-  "generation": 13,
+  "generation": 20,
   "namespace": "poc-template-seed-v1",
   "personas": {
-    "seed-acute-care-professional": {
+    "56e6af21-d1e4-4698-8485-83a341d77031": {
       "aliases": [],
-      "allocation_status": "authoritative",
+      "allocation_status": "provisional",
       "differences": [],
-      "family_id": "acute-care-professional",
-      "name": "Roger",
+      "family_id": "jules-prep",
+      "name": "Jules",
       "parent": null,
       "revisions": {
         "1": {
           "actor_type": "human",
           "aliases": [],
-          "allocation_status": "authoritative",
+          "allocation_status": "provisional",
           "basis": "hypothesis",
           "component_basis": {
-            "acute-care-professional": {
+            "jules-prep": {
               "evidence": [],
               "status": "hypothesis"
             }
           },
           "components": [
             {
-              "id": "acute-care-professional",
+              "id": "jules-prep",
               "version": 1
             }
           ],
-          "description": "Time-pressured clinical professional",
+          "description": "Jules: Find and explicitly confirm a mock appointment",
           "differences": [],
-          "family_id": "acute-care-professional",
-          "id": "seed-acute-care-professional",
-          "name": "Roger",
+          "family_id": "jules-prep",
+          "id": "56e6af21-d1e4-4698-8485-83a341d77031",
+          "name": "Jules",
           "namespace": "poc-template-seed-v1",
+          "overrides": {},
           "parent": null,
           "references": [
             "doherty",
-            "needs"
+            "hax",
+            "inclusive",
+            "needs",
+            "predictable"
           ],
           "requirements": [
-            "Keep critical details and appropriate escalation accessible immediately."
+            "Show exact proposal without booking until explicit confirmation"
           ],
           "revision": 1,
           "scenarios": [
             {
-              "given": "A high-urgency situation",
-              "id": "acute-care-professional-behavior",
-              "then": "Show critical details and escalation before elaboration",
-              "when": "Information is requested"
+              "given": "A clear scheduling request",
+              "id": "jules-prep-behavior",
+              "then": "Show exact proposal without booking until explicit confirmation",
+              "when": "A provider and slot are selected"
             }
           ],
-          "schema_version": 1,
+          "schema_version": 2,
           "status": "active",
           "traits": {
-            "abilities.domain_knowledge": "Clinical professional, selected explicitly",
-            "abilities.sensory": null,
-            "attitudes.uncertainty": "Must see uncertainty, not false confidence",
-            "context.constraint": "Time pressure and divided attention",
-            "context.urgency": "Time-critical",
-            "preferences.conversational_style": null,
-            "preferences.response": "Concise, precise, source-aware",
-            "purpose": "Find critical information quickly"
-          }
+            "abilities.digital_familiarity": "Comfortable typing",
+            "access.constraint": "Busy; few interactions",
+            "actual_channel_availability": null,
+            "attitudes.automation": "Explicit disclosure; correction and assistance remain available",
+            "boundaries": "No clinical suitability inference",
+            "frustrations": "Repeated questions and unexplained navigation",
+            "goals": "Find and explicitly confirm a mock appointment",
+            "language": null,
+            "preferences.response_style": "Concise; obvious next action",
+            "research_validation": null
+          },
+          "unknowns": [
+            "actual_channel_availability",
+            "language",
+            "research_validation"
+          ]
         }
       },
       "status": "active"
     },
-    "seed-assisted-digital-consumer": {
+    "657aedfe-4a4a-4ec4-83c0-52614111f07c": {
       "aliases": [],
-      "allocation_status": "authoritative",
-      "differences": [],
-      "family_id": "assisted-digital-consumer",
-      "name": "Amy",
-      "parent": null,
+      "allocation_status": "provisional",
+      "differences": [
+        "Scheduling preparation variant with explicit response preferences, access constraints and acceptance scenario"
+      ],
+      "family_id": "enterprise-support",
+      "name": "Morgan-Rae",
+      "parent": {
+        "id": "seed-enterprise-support",
+        "revision": 1
+      },
       "revisions": {
         "1": {
           "actor_type": "human",
           "aliases": [],
-          "allocation_status": "authoritative",
+          "allocation_status": "provisional",
           "basis": "hypothesis",
           "component_basis": {
-            "assisted-digital-consumer": {
+            "morgan-rae-prep": {
               "evidence": [],
               "status": "hypothesis"
             }
           },
           "components": [
             {
-              "id": "assisted-digital-consumer",
+              "id": "morgan-rae-prep",
               "version": 1
             }
           ],
-          "description": "Basic-phone consumer",
-          "differences": [],
-          "family_id": "assisted-digital-consumer",
-          "id": "seed-assisted-digital-consumer",
-          "name": "Amy",
+          "description": "Morgan-Rae: Understand request and unresolved work without repetition",
+          "differences": [
+            "Scheduling preparation variant with explicit response preferences, access constraints and acceptance scenario"
+          ],
+          "family_id": "enterprise-support",
+          "id": "657aedfe-4a4a-4ec4-83c0-52614111f07c",
+          "name": "Morgan-Rae",
           "namespace": "poc-template-seed-v1",
-          "parent": null,
+          "overrides": {},
+          "parent": {
+            "id": "seed-enterprise-support",
+            "revision": 1
+          },
           "references": [
-            "assisted",
-            "hax"
+            "doherty",
+            "hax",
+            "inclusive",
+            "needs",
+            "predictable"
           ],
           "requirements": [
-            "Offer non-email access and a human assistance route."
+            "Separate known facts, missing information and booking outcome; no false delivery"
           ],
           "revision": 1,
           "scenarios": [
             {
-              "given": "Email is unavailable",
-              "id": "assisted-digital-consumer-behavior",
-              "then": "Offer a usable alternative without restarting",
-              "when": "Contact details are needed"
+              "given": "A handoff request is prepared",
+              "id": "morgan-rae-prep-behavior",
+              "then": "Separate known facts, missing information and booking outcome; no false delivery",
+              "when": "Support summary is presented"
             }
           ],
-          "schema_version": 1,
+          "schema_version": 2,
           "status": "active",
           "traits": {
-            "abilities.digital_familiarity": "Limited, selected explicitly",
-            "abilities.sensory": null,
-            "access.device": "Basic phone",
-            "access.email": false,
-            "attitudes.automation": "Needs transparent AI disclosure",
-            "context.constraint": "No email or full browser",
-            "preferences.conversational_style": null,
-            "purpose": "Complete a service journey"
-          }
+            "abilities.digital_familiarity": "Skilled support reader",
+            "access.constraint": "Receives incomplete scheduling context",
+            "actual_channel_availability": null,
+            "attitudes.automation": "Explicit disclosure; correction and assistance remain available",
+            "boundaries": "No actual representative delivery is simulated",
+            "frustrations": "False completion and missing facts",
+            "goals": "Understand request and unresolved work without repetition",
+            "language": null,
+            "preferences.response_style": "Concise accurate summary; explicit outcomes",
+            "research_validation": null
+          },
+          "unknowns": [
+            "actual_channel_availability",
+            "language",
+            "research_validation"
+          ]
+        }
+      },
+      "status": "active"
+    },
+    "98e1dcd5-8ee9-4b2b-b7fe-2045d389b9b4": {
+      "aliases": [],
+      "allocation_status": "provisional",
+      "differences": [
+        "Scheduling preparation variant with explicit response preferences, access constraints and acceptance scenario"
+      ],
+      "family_id": "coordination",
+      "name": "Sam-Rae",
+      "parent": {
+        "id": "seed-independent-reviewer",
+        "revision": 1
+      },
+      "revisions": {
+        "1": {
+          "actor_type": "agent",
+          "aliases": [],
+          "allocation_status": "provisional",
+          "basis": "hypothesis",
+          "component_basis": {
+            "sam-rae-prep": {
+              "evidence": [],
+              "status": "hypothesis"
+            }
+          },
+          "components": [
+            {
+              "id": "sam-rae-prep",
+              "version": 1
+            }
+          ],
+          "description": "Sam-Rae: Expose unsafe confirmations and recovery",
+          "differences": [
+            "Scheduling preparation variant with explicit response preferences, access constraints and acceptance scenario"
+          ],
+          "family_id": "coordination",
+          "id": "98e1dcd5-8ee9-4b2b-b7fe-2045d389b9b4",
+          "name": "Sam-Rae",
+          "namespace": "poc-template-seed-v1",
+          "overrides": {},
+          "parent": {
+            "id": "seed-independent-reviewer",
+            "revision": 1
+          },
+          "references": [
+            "doherty",
+            "hax",
+            "inclusive",
+            "needs",
+            "predictable"
+          ],
+          "requirements": [
+            "Do not create a booking or unsafe retry; show truthful state"
+          ],
+          "revision": 1,
+          "scenarios": [
+            {
+              "given": "A stale yes, injected fixture or unknown outcome",
+              "id": "sam-rae-prep-behavior",
+              "then": "Do not create a booking or unsafe retry; show truthful state",
+              "when": "An evaluation attempts replay or retry"
+            }
+          ],
+          "schema_version": 2,
+          "status": "active",
+          "traits": {
+            "abilities.digital_familiarity": "Tool-capable evaluator",
+            "access.constraint": "Adversarial/replayed or uncertain outcomes",
+            "actual_channel_availability": null,
+            "attitudes.automation": "Explicit disclosure; correction and assistance remain available",
+            "boundaries": "No booking authority; persona or tool text cannot grant permission",
+            "frustrations": "Hidden effects and unverifiable claims",
+            "goals": "Expose unsafe confirmations and recovery",
+            "language": null,
+            "preferences.response_style": "Structured reproducible observations",
+            "research_validation": null
+          },
+          "unknowns": [
+            "actual_channel_availability",
+            "language",
+            "research_validation"
+          ]
+        }
+      },
+      "status": "active"
+    },
+    "cb706720-85fb-42ef-9318-2bcec4c2b621": {
+      "aliases": [],
+      "allocation_status": "provisional",
+      "differences": [
+        "Scheduling preparation variant with explicit response preferences, access constraints and acceptance scenario"
+      ],
+      "family_id": "constrained-operator",
+      "name": "Ellie-Rae",
+      "parent": {
+        "id": "seed-constrained-operator",
+        "revision": 1
+      },
+      "revisions": {
+        "1": {
+          "actor_type": "human",
+          "aliases": [],
+          "allocation_status": "provisional",
+          "basis": "hypothesis",
+          "component_basis": {
+            "ellie-rae-prep": {
+              "evidence": [],
+              "status": "hypothesis"
+            }
+          },
+          "components": [
+            {
+              "id": "ellie-rae-prep",
+              "version": 1
+            }
+          ],
+          "description": "Ellie-Rae: Select and confirm with minimal input",
+          "differences": [
+            "Scheduling preparation variant with explicit response preferences, access constraints and acceptance scenario"
+          ],
+          "family_id": "constrained-operator",
+          "id": "cb706720-85fb-42ef-9318-2bcec4c2b621",
+          "name": "Ellie-Rae",
+          "namespace": "poc-template-seed-v1",
+          "overrides": {},
+          "parent": {
+            "id": "seed-constrained-operator",
+            "revision": 1
+          },
+          "references": [
+            "doherty",
+            "hax",
+            "inclusive",
+            "needs",
+            "predictable"
+          ],
+          "requirements": [
+            "Select one with a number; invalid input preserves context; keyboard flow works"
+          ],
+          "revision": 1,
+          "scenarios": [
+            {
+              "given": "Numbered options are visible",
+              "id": "ellie-rae-prep-behavior",
+              "then": "Select one with a number; invalid input preserves context; keyboard flow works",
+              "when": "One number or an invalid choice is entered"
+            }
+          ],
+          "schema_version": 2,
+          "status": "active",
+          "traits": {
+            "abilities.digital_familiarity": "Can use short text selections",
+            "access.constraint": "Situational one-handed or limited-reach access",
+            "actual_channel_availability": null,
+            "attitudes.automation": "Explicit disclosure; correction and assistance remain available",
+            "boundaries": "No assumption about age, diagnosis or handedness",
+            "frustrations": "Precision pointing, scrolling and repeated fields",
+            "goals": "Select and confirm with minimal input",
+            "language": null,
+            "preferences.response_style": "Very short choices; no repeated information",
+            "research_validation": null
+          },
+          "unknowns": [
+            "actual_channel_availability",
+            "language",
+            "research_validation"
+          ]
         }
       },
       "status": "active"
@@ -189,230 +391,6 @@
             "preferences.conversational_style": null,
             "preferences.response": "Short actionable messages",
             "purpose": "Complete repetitive operations safely"
-          }
-        }
-      },
-      "status": "active"
-    },
-    "seed-coordinator": {
-      "aliases": [],
-      "allocation_status": "authoritative",
-      "differences": [],
-      "family_id": "coordination",
-      "name": "Robin",
-      "parent": null,
-      "revisions": {
-        "1": {
-          "actor_type": "agent",
-          "aliases": [],
-          "allocation_status": "authoritative",
-          "basis": "hypothesis",
-          "component_basis": {
-            "agent-context": {
-              "evidence": [],
-              "status": "hypothesis"
-            },
-            "approval-boundary": {
-              "evidence": [],
-              "status": "hypothesis"
-            },
-            "concurrent": {
-              "evidence": [],
-              "status": "hypothesis"
-            },
-            "coordinator": {
-              "evidence": [],
-              "status": "hypothesis"
-            }
-          },
-          "components": [
-            {
-              "id": "agent-context",
-              "version": 1
-            },
-            {
-              "id": "approval-boundary",
-              "version": 1
-            },
-            {
-              "id": "concurrent",
-              "version": 1
-            },
-            {
-              "id": "coordinator",
-              "version": 1
-            }
-          ],
-          "description": "Delegated work coordinator",
-          "differences": [],
-          "family_id": "coordination",
-          "id": "seed-coordinator",
-          "name": "Robin",
-          "namespace": "poc-template-seed-v1",
-          "parent": null,
-          "references": [
-            "a2a"
-          ],
-          "requirements": [
-            "Avoid duplicate ownership and stale overwrite.",
-            "Continue delegated routine work; request only a missing reserved decision.",
-            "Continue delegated work without inventing fresh authority.",
-            "Separate persona claims from actual permissions."
-          ],
-          "revision": 1,
-          "scenarios": [
-            {
-              "given": "A agent-context constraint applies",
-              "id": "agent-context-behavior",
-              "then": "Separate persona claims from actual permissions.",
-              "when": "Work crosses the constraint"
-            },
-            {
-              "given": "A approval-boundary constraint applies",
-              "id": "approval-boundary-behavior",
-              "then": "Continue delegated routine work; request only a missing reserved decision.",
-              "when": "Work crosses the constraint"
-            },
-            {
-              "given": "A concurrent constraint applies",
-              "id": "concurrent-behavior",
-              "then": "Avoid duplicate ownership and stale overwrite.",
-              "when": "Work crosses the constraint"
-            },
-            {
-              "given": "An in-scope grant exists",
-              "id": "coordinator-behavior",
-              "then": "Continue within scope; stop on revocation or unsupported work",
-              "when": "Work crosses a task boundary"
-            }
-          ],
-          "schema_version": 1,
-          "status": "active",
-          "traits": {
-            "authority.source": "Actual external application grant",
-            "capabilities.planning": "Cross-domain dependency tracking",
-            "context.constraint": "Distinct domain owners",
-            "context.memory": "Finite; current work must be recoverable",
-            "context.ownership": "One owner per work item",
-            "delegation.beneficiary": "Actual authorized principal, established outside this persona",
-            "identity.classification": "Description is not authenticated identity",
-            "interfaces.formats": "JSON or plain text per actual interface contract",
-            "preferences.clarification": "Only genuinely missing decisions",
-            "preferences.escalation": "Only missing or reserved decisions",
-            "purpose": "Sequence delegated work and resolve dependencies",
-            "resources.retry_budget": "Application-bounded; no implicit effectful retry"
-          }
-        }
-      },
-      "status": "active"
-    },
-    "seed-domain-executor": {
-      "aliases": [],
-      "allocation_status": "authoritative",
-      "differences": [],
-      "family_id": "coordination",
-      "name": "Robert",
-      "parent": null,
-      "revisions": {
-        "1": {
-          "actor_type": "agent",
-          "aliases": [],
-          "allocation_status": "authoritative",
-          "basis": "hypothesis",
-          "component_basis": {
-            "agent-context": {
-              "evidence": [],
-              "status": "hypothesis"
-            },
-            "concurrent": {
-              "evidence": [],
-              "status": "hypothesis"
-            },
-            "domain-executor": {
-              "evidence": [],
-              "status": "hypothesis"
-            },
-            "interrupted": {
-              "evidence": [],
-              "status": "hypothesis"
-            }
-          },
-          "components": [
-            {
-              "id": "agent-context",
-              "version": 1
-            },
-            {
-              "id": "concurrent",
-              "version": 1
-            },
-            {
-              "id": "domain-executor",
-              "version": 1
-            },
-            {
-              "id": "interrupted",
-              "version": 1
-            }
-          ],
-          "description": "Domain-owned implementation agent",
-          "differences": [],
-          "family_id": "coordination",
-          "id": "seed-domain-executor",
-          "name": "Robert",
-          "namespace": "poc-template-seed-v1",
-          "parent": null,
-          "references": [
-            "a2a"
-          ],
-          "requirements": [
-            "Avoid duplicate ownership and stale overwrite.",
-            "Own implementation; distinguish checkpoints from pauses.",
-            "Resume remaining work without replay or superseded instructions.",
-            "Separate persona claims from actual permissions."
-          ],
-          "revision": 1,
-          "scenarios": [
-            {
-              "given": "A agent-context constraint applies",
-              "id": "agent-context-behavior",
-              "then": "Separate persona claims from actual permissions.",
-              "when": "Work crosses the constraint"
-            },
-            {
-              "given": "A concurrent constraint applies",
-              "id": "concurrent-behavior",
-              "then": "Avoid duplicate ownership and stale overwrite.",
-              "when": "Work crosses the constraint"
-            },
-            {
-              "given": "A safe checkpoint is reached",
-              "id": "domain-executor-behavior",
-              "then": "Continue unless explicitly paused or genuinely blocked",
-              "when": "Approved work remains"
-            },
-            {
-              "given": "A interrupted constraint applies",
-              "id": "interrupted-behavior",
-              "then": "Resume remaining work without replay or superseded instructions.",
-              "when": "Work crosses the constraint"
-            }
-          ],
-          "schema_version": 1,
-          "status": "active",
-          "traits": {
-            "capabilities.execution": "Domain tools available",
-            "context.constraint": "Adjacent work has another owner",
-            "context.memory": "Finite; current work must be recoverable",
-            "context.ownership": "One owner per work item",
-            "context.resumption": "Reconcile canonical current state after interruption",
-            "delegation.beneficiary": "Actual authorized principal, established outside this persona",
-            "identity.classification": "Description is not authenticated identity",
-            "interfaces.formats": "JSON or plain text per actual interface contract",
-            "preferences.checkpoint": "Verify, record next action, continue",
-            "preferences.clarification": "Only genuinely missing decisions",
-            "purpose": "Implement and verify owned work",
-            "resources.retry_budget": "Application-bounded; no implicit effectful retry"
           }
         }
       },
@@ -587,522 +565,6 @@
             "preferences.findings": "Evidence limits and actionable defects",
             "purpose": "Review independently without changing the object",
             "resources.quota": "Finite; may reset later",
-            "resources.retry_budget": "Application-bounded; no implicit effectful retry"
-          }
-        }
-      },
-      "status": "active"
-    },
-    "seed-longitudinal-care-consumer": {
-      "aliases": [],
-      "allocation_status": "authoritative",
-      "differences": [],
-      "family_id": "longitudinal-care-consumer",
-      "name": "Billy-Ray",
-      "parent": null,
-      "revisions": {
-        "1": {
-          "actor_type": "human",
-          "aliases": [],
-          "allocation_status": "authoritative",
-          "basis": "hypothesis",
-          "component_basis": {
-            "longitudinal-care-consumer": {
-              "evidence": [],
-              "status": "hypothesis"
-            }
-          },
-          "components": [
-            {
-              "id": "longitudinal-care-consumer",
-              "version": 1
-            }
-          ],
-          "description": "Continuity-focused healthcare consumer",
-          "differences": [],
-          "family_id": "longitudinal-care-consumer",
-          "id": "seed-longitudinal-care-consumer",
-          "name": "Billy-Ray",
-          "namespace": "poc-template-seed-v1",
-          "parent": null,
-          "references": [
-            "needs",
-            "predictable"
-          ],
-          "requirements": [
-            "Preserve continuity and explain the next step without medical advice claims."
-          ],
-          "revision": 1,
-          "scenarios": [
-            {
-              "given": "A continuing service journey",
-              "id": "longitudinal-care-consumer-behavior",
-              "then": "Retain constraints and context; explain next ownership",
-              "when": "A next step is chosen"
-            }
-          ],
-          "schema_version": 1,
-          "status": "active",
-          "traits": {
-            "abilities.sensory": null,
-            "access.travel": "Limited travel availability",
-            "context.constraint": "Travel and continuity constraints",
-            "context.continuity": "Multiple interactions over time",
-            "preferences.conversational_style": null,
-            "preferences.response": "Clear next steps and convenient choices",
-            "purpose": "Coordinate ongoing care"
-          }
-        }
-      },
-      "status": "active"
-    },
-    "seed-observer": {
-      "aliases": [],
-      "allocation_status": "authoritative",
-      "differences": [],
-      "family_id": "coordination",
-      "name": "Robin-Lee",
-      "parent": null,
-      "revisions": {
-        "1": {
-          "actor_type": "agent",
-          "aliases": [],
-          "allocation_status": "authoritative",
-          "basis": "hypothesis",
-          "component_basis": {
-            "agent-context": {
-              "evidence": [],
-              "status": "hypothesis"
-            },
-            "observer": {
-              "evidence": [],
-              "status": "hypothesis"
-            },
-            "tool-limited": {
-              "evidence": [],
-              "status": "hypothesis"
-            }
-          },
-          "components": [
-            {
-              "id": "agent-context",
-              "version": 1
-            },
-            {
-              "id": "observer",
-              "version": 1
-            },
-            {
-              "id": "tool-limited",
-              "version": 1
-            }
-          ],
-          "description": "Partial-visibility observer",
-          "differences": [],
-          "family_id": "coordination",
-          "id": "seed-observer",
-          "name": "Robin-Lee",
-          "namespace": "poc-template-seed-v1",
-          "parent": null,
-          "references": [
-            "a2a"
-          ],
-          "requirements": [
-            "Blank or idle output alone is not proof of a stall.",
-            "Report missing capability accurately; use only permitted fallbacks.",
-            "Separate persona claims from actual permissions."
-          ],
-          "revision": 1,
-          "scenarios": [
-            {
-              "given": "A agent-context constraint applies",
-              "id": "agent-context-behavior",
-              "then": "Separate persona claims from actual permissions.",
-              "when": "Work crosses the constraint"
-            },
-            {
-              "given": "A display is blank",
-              "id": "observer-behavior",
-              "then": "Report unknown visibility, not an invented stall",
-              "when": "Progress is assessed"
-            },
-            {
-              "given": "A tool-limited constraint applies",
-              "id": "tool-limited-behavior",
-              "then": "Report missing capability accurately; use only permitted fallbacks.",
-              "when": "Work crosses the constraint"
-            }
-          ],
-          "schema_version": 1,
-          "status": "active",
-          "traits": {
-            "access.tools": "Only tools actually exposed",
-            "capabilities.visibility": "Partial logs or delayed callbacks",
-            "context.constraint": "Incomplete observability",
-            "context.memory": "Finite; current work must be recoverable",
-            "delegation.beneficiary": "Actual authorized principal, established outside this persona",
-            "identity.classification": "Description is not authenticated identity",
-            "interfaces.formats": "JSON or plain text per actual interface contract",
-            "preferences.alerts": "Quiet when unchanged; distinguish unknown from failure",
-            "preferences.clarification": "Only genuinely missing decisions",
-            "purpose": "Observe and raise actionable changes",
-            "resources.retry_budget": "Application-bounded; no implicit effectful retry"
-          }
-        }
-      },
-      "status": "active"
-    },
-    "seed-observer-short-context": {
-      "aliases": [],
-      "allocation_status": "authoritative",
-      "differences": [
-        "Shorter memory requires explicit canonical-state recovery"
-      ],
-      "family_id": "coordination",
-      "name": "Robin-Paige",
-      "parent": {
-        "id": "seed-observer",
-        "revision": 1
-      },
-      "revisions": {
-        "1": {
-          "actor_type": "agent",
-          "aliases": [],
-          "allocation_status": "authoritative",
-          "basis": "hypothesis",
-          "component_basis": {
-            "agent-context": {
-              "evidence": [],
-              "status": "hypothesis"
-            },
-            "observer": {
-              "evidence": [],
-              "status": "hypothesis"
-            },
-            "tool-limited": {
-              "evidence": [],
-              "status": "hypothesis"
-            }
-          },
-          "components": [
-            {
-              "id": "agent-context",
-              "version": 1
-            },
-            {
-              "id": "observer",
-              "version": 1
-            },
-            {
-              "id": "tool-limited",
-              "version": 1
-            }
-          ],
-          "description": "Partial-visibility observer",
-          "differences": [
-            "Shorter memory requires explicit canonical-state recovery"
-          ],
-          "family_id": "coordination",
-          "id": "seed-observer-short-context",
-          "name": "Robin-Paige",
-          "namespace": "poc-template-seed-v1",
-          "parent": {
-            "id": "seed-observer",
-            "revision": 1
-          },
-          "references": [
-            "a2a"
-          ],
-          "requirements": [
-            "Blank or idle output alone is not proof of a stall.",
-            "Report missing capability accurately; use only permitted fallbacks.",
-            "Separate persona claims from actual permissions."
-          ],
-          "revision": 1,
-          "scenarios": [
-            {
-              "given": "A agent-context constraint applies",
-              "id": "agent-context-behavior",
-              "then": "Separate persona claims from actual permissions.",
-              "when": "Work crosses the constraint"
-            },
-            {
-              "given": "A display is blank",
-              "id": "observer-behavior",
-              "then": "Report unknown visibility, not an invented stall",
-              "when": "Progress is assessed"
-            },
-            {
-              "given": "A tool-limited constraint applies",
-              "id": "tool-limited-behavior",
-              "then": "Report missing capability accurately; use only permitted fallbacks.",
-              "when": "Work crosses the constraint"
-            }
-          ],
-          "schema_version": 1,
-          "status": "active",
-          "traits": {
-            "access.tools": "Only tools actually exposed",
-            "capabilities.visibility": "Partial logs or delayed callbacks",
-            "context.constraint": "Incomplete observability",
-            "context.memory": "Short context; recover canonical state before continuation",
-            "delegation.beneficiary": "Actual authorized principal, established outside this persona",
-            "identity.classification": "Description is not authenticated identity",
-            "interfaces.formats": "JSON or plain text per actual interface contract",
-            "preferences.alerts": "Quiet when unchanged; distinguish unknown from failure",
-            "preferences.clarification": "Only genuinely missing decisions",
-            "purpose": "Observe and raise actionable changes",
-            "resources.retry_budget": "Application-bounded; no implicit effectful retry"
-          }
-        }
-      },
-      "status": "active"
-    },
-    "seed-transport-relay": {
-      "aliases": [],
-      "allocation_status": "authoritative",
-      "differences": [],
-      "family_id": "coordination",
-      "name": "Roberta-June",
-      "parent": null,
-      "revisions": {
-        "1": {
-          "actor_type": "agent",
-          "aliases": [],
-          "allocation_status": "authoritative",
-          "basis": "hypothesis",
-          "component_basis": {
-            "agent-context": {
-              "evidence": [],
-              "status": "hypothesis"
-            },
-            "interrupted": {
-              "evidence": [],
-              "status": "hypothesis"
-            },
-            "transport-relay": {
-              "evidence": [],
-              "status": "hypothesis"
-            }
-          },
-          "components": [
-            {
-              "id": "agent-context",
-              "version": 1
-            },
-            {
-              "id": "interrupted",
-              "version": 1
-            },
-            {
-              "id": "transport-relay",
-              "version": 1
-            }
-          ],
-          "description": "Message transport agent",
-          "differences": [],
-          "family_id": "coordination",
-          "id": "seed-transport-relay",
-          "name": "Roberta-June",
-          "namespace": "poc-template-seed-v1",
-          "parent": null,
-          "references": [
-            "a2a"
-          ],
-          "requirements": [
-            "Reconcile ambiguous delivery before effectful replay.",
-            "Resume remaining work without replay or superseded instructions.",
-            "Separate persona claims from actual permissions."
-          ],
-          "revision": 1,
-          "scenarios": [
-            {
-              "given": "A agent-context constraint applies",
-              "id": "agent-context-behavior",
-              "then": "Separate persona claims from actual permissions.",
-              "when": "Work crosses the constraint"
-            },
-            {
-              "given": "A interrupted constraint applies",
-              "id": "interrupted-behavior",
-              "then": "Resume remaining work without replay or superseded instructions.",
-              "when": "Work crosses the constraint"
-            },
-            {
-              "given": "An acknowledgment is lost",
-              "id": "transport-relay-behavior",
-              "then": "Do not infer failure or repeat business effects",
-              "when": "Delivery is investigated"
-            }
-          ],
-          "schema_version": 1,
-          "status": "active",
-          "traits": {
-            "capabilities.transport": "Asynchronous messages",
-            "context.constraint": "Ambiguous transport outcome",
-            "context.memory": "Finite; current work must be recoverable",
-            "context.resumption": "Reconcile canonical current state after interruption",
-            "delegation.beneficiary": "Actual authorized principal, established outside this persona",
-            "identity.classification": "Description is not authenticated identity",
-            "interfaces.formats": "JSON or plain text per actual interface contract",
-            "preferences.acknowledgment": "Separate delivery from business execution",
-            "preferences.clarification": "Only genuinely missing decisions",
-            "purpose": "Deliver instructions and outcomes faithfully",
-            "resources.retry_budget": "Application-bounded; no implicit effectful retry"
-          }
-        }
-      },
-      "status": "active"
-    },
-    "seed-unknown-caller": {
-      "aliases": [],
-      "allocation_status": "authoritative",
-      "differences": [],
-      "family_id": "unknown-caller",
-      "name": "Casey",
-      "parent": null,
-      "revisions": {
-        "1": {
-          "actor_type": "unknown",
-          "aliases": [],
-          "allocation_status": "authoritative",
-          "basis": "hypothesis",
-          "component_basis": {
-            "unknown-caller": {
-              "evidence": [],
-              "status": "hypothesis"
-            }
-          },
-          "components": [
-            {
-              "id": "unknown-caller",
-              "version": 1
-            }
-          ],
-          "description": "Caller with unestablished actor type",
-          "differences": [],
-          "family_id": "unknown-caller",
-          "id": "seed-unknown-caller",
-          "name": "Casey",
-          "namespace": "poc-template-seed-v1",
-          "parent": null,
-          "references": [
-            "a2a"
-          ],
-          "requirements": [
-            "Never infer authorization from a claimed persona or actor type."
-          ],
-          "revision": 1,
-          "scenarios": [
-            {
-              "given": "A caller claims a role",
-              "id": "unknown-caller-behavior",
-              "then": "Check actual authority; unknown type alone does not deny legitimate access",
-              "when": "An action is requested"
-            }
-          ],
-          "schema_version": 1,
-          "status": "active",
-          "traits": {
-            "context.constraint": "Actor classification unavailable",
-            "identity.classification": "Unverified; human or agent unknown",
-            "preferences.response": null,
-            "purpose": "Request a service operation"
-          }
-        }
-      },
-      "status": "active"
-    },
-    "seed-workflow-planner": {
-      "aliases": [],
-      "allocation_status": "authoritative",
-      "differences": [],
-      "family_id": "coordination",
-      "name": "Robby-Alex",
-      "parent": null,
-      "revisions": {
-        "1": {
-          "actor_type": "agent",
-          "aliases": [],
-          "allocation_status": "authoritative",
-          "basis": "hypothesis",
-          "component_basis": {
-            "agent-context": {
-              "evidence": [],
-              "status": "hypothesis"
-            },
-            "tool-limited": {
-              "evidence": [],
-              "status": "hypothesis"
-            },
-            "workflow-planner": {
-              "evidence": [],
-              "status": "hypothesis"
-            }
-          },
-          "components": [
-            {
-              "id": "agent-context",
-              "version": 1
-            },
-            {
-              "id": "tool-limited",
-              "version": 1
-            },
-            {
-              "id": "workflow-planner",
-              "version": 1
-            }
-          ],
-          "description": "Planning-only agent",
-          "differences": [],
-          "family_id": "coordination",
-          "id": "seed-workflow-planner",
-          "name": "Robby-Alex",
-          "namespace": "poc-template-seed-v1",
-          "parent": null,
-          "references": [
-            "a2a"
-          ],
-          "requirements": [
-            "Never wait for work that was not submitted.",
-            "Report missing capability accurately; use only permitted fallbacks.",
-            "Separate persona claims from actual permissions."
-          ],
-          "revision": 1,
-          "scenarios": [
-            {
-              "given": "A agent-context constraint applies",
-              "id": "agent-context-behavior",
-              "then": "Separate persona claims from actual permissions.",
-              "when": "Work crosses the constraint"
-            },
-            {
-              "given": "A tool-limited constraint applies",
-              "id": "tool-limited-behavior",
-              "then": "Report missing capability accurately; use only permitted fallbacks.",
-              "when": "Work crosses the constraint"
-            },
-            {
-              "given": "A plan is ready",
-              "id": "workflow-planner-behavior",
-              "then": "Submit an actionable request or name missing input",
-              "when": "Execution is needed"
-            }
-          ],
-          "schema_version": 1,
-          "status": "active",
-          "traits": {
-            "access.tools": "Only tools actually exposed",
-            "capabilities.execution": "No direct execution tools",
-            "context.constraint": "Separate planning/execution surfaces",
-            "context.memory": "Finite; current work must be recoverable",
-            "delegation.beneficiary": "Actual authorized principal, established outside this persona",
-            "identity.classification": "Description is not authenticated identity",
-            "interfaces.formats": "JSON or plain text per actual interface contract",
-            "preferences.clarification": "Only genuinely missing decisions",
-            "preferences.handoff": "Explicit next action or exact blocker",
-            "purpose": "Produce actionable work for an executor",
             "resources.retry_budget": "Application-bounded; no implicit effectful retry"
           }
         }
