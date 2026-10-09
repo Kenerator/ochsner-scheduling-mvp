@@ -1,6 +1,6 @@
 # Video production notes
 
-Updated: not yet completed. Status: scaffold, not a finished script or recording.
+Updated: 2026-10-08. Status: planning context only; not a finished script, recording or demonstrated behavior.
 
 Keep this file current as Specify, Plan and Implement establish the actual product. Record confirmed behavior, not aspirations; link to canonical specs/tests instead of copying them. Use synthetic data and keep credentials and personal data out of recordings.
 
@@ -27,3 +27,7 @@ Use the [demo runbook](demo.md) for timing and reproducibility, [decisions](../p
 Link the [code walkthrough](as-built/code-walkthrough.md) and [as-built architecture](as-built/architecture.md) when populated. If multiple candidates will be submitted, explain the distinct hypotheses/trade-offs and why retaining alternatives helps reviewers choose; identify the recommended starting point. Do not imply every candidate is complete or demonstrate unverified behavior.
 
 Record the demonstrated [milestone tags](milestones.md) and permitted [UI assets/conventions](ui-assets.md). If a bounded post-MVP refinement actually occurred, note pre/post tags, comparable redacted views and the user benefit/trade-off. Distinguish separately permitted later work from the original baseline. For the ending/review discussion, include any unresolved sponsor/platform UI-conventions question and whether refinement was performed or deferred; do not expand the five-minute ceiling automatically.
+
+## Scheduling planning context
+
+Canonical [feature spec](../../specs/001-scheduling-assistant/spec.md), [design](../../specs/001-scheduling-assistant/plan.md) and [validation guide](../../specs/001-scheduling-assistant/quickstart.md) now define provider lookup, booking and no-match journeys for CLI/Marimo. Architecture is planned reusable core with strict service/consent boundaries; generic starter demos do not demonstrate these stories. Primary-user and Support/Admin Personas remain pending; US4 is safe diagnostics/docs, not a console. Approved local SVG/CSS and provenance were supplied during planning; UI integration is unverified. Future video must distinguish supplied synthetic service, live AI and scripted tests, explain unknown-write recovery/process-local limitations, and use actual-code as-built revision. No video, runtime qualification, timing-window compliance or submission has occurred in Plan.
