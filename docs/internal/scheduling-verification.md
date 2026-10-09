@@ -1,39 +1,47 @@
 # Scheduling verification
 
-Updated 2026-10-09, macOS ARM, Python3.12.12, Marimo0.25.0. Reviewed source: planning baseline `cc4535d` plus the current uncommitted scheduling package, interfaces and tests. Final revision and fresh-host results remain pending. Native [tasks](../../specs/001-scheduling-assistant/tasks.md) own progress.
+Updated 2026-10-09. Reviewed application source: `e0996c1c8a438b6b6bfeff5283b5b3b02ddd8e69`; documentation finalization follows separately. Native [tasks](../../specs/001-scheduling-assistant/tasks.md) own progress. Synthetic fixtures only; no production, assigned-window or finished-video claim.
 
-Automated verification uses `PYTHONPATH=src .venv/bin/python -m unittest discover -s tests -v`. The combined suite passed112 tests after the four independent-review fixes and the real Marimo callback regression. The supplied service integration runs fresh Store instances on owned ephemeral loopback ports and shuts them down. API25, AI11 and supplied-server integration8 tests passed independently. These are synthetic tests, not live model qualification.
+## Automated and fresh-clone verification
 
-The success and failure commands in [setup](../user/setup.md) both passed. Success uses a **simulated interpreter with actual supplied HTTP**, seven turns, GET providers/search/availability200 and exactly one POST appointments201, including decline before later separate consent. Failure uses the same disclosed simulation with actual HTTP, three turns, providers/search200, zero availability/POST and clinic assistance. No generic starter demo is scheduling evidence.
+Fresh authenticated private GitHub clones were installed using declared project-local dependencies on Mac ARM (Python3.12.12) and Minty Linux x86_64 (Python3.12.3, glibc2.39). Marimo is pinned0.25.0. Both dependency checks passed. At source e0996c1, `PYTHONPATH=src .venv/bin/python -m unittest discover -s tests -v` passed114 tests (Mac1.315s, Minty4.232s). Strict Marimo check passed. Clean clone roots were `/private/tmp/ochsner-mvp-mac-clone-20261009.RFZ21F/repo` and `/home/ken/.cache/poc-mvp-qualification-20261009.m89xaT/repo`. Reviewer setup uses ordinary GitHub access/environment credentials, with no Bitwarden dependency. An existing host SSH alias was used for authenticated qualification; no host trust or global tooling changes.
 
-## Genuine model execution
+Both `scripts/demo_scheduling.py --scenario success` and `--scenario failure` passed on both hosts at e0996c1. These use an explicitly **simulated interpreter and actual supplied HTTP** on fresh owned ephemeral services. Success: seven turns, providers/search/availability200 and exactly one POST201, decline/reselection/separate consent/repeat protection. Failure: three turns, providers/search200, zero availability/POST, truthful clinic guidance. These runs do not qualify live AI.
 
-All live runs used explicitly selected `gpt-5.4-mini`, direct Responses strict extraction, authorized process-local runtime credentials and supplied synthetic inputs. No key or raw transcript is retained here. Single user, sequential turns; no load benchmark.
+## Genuine model and interfaces
 
-| Environment/interface | Scenario | Observed result |
-| --- | --- | --- |
-| Mac ARM, shared Session, fresh ephemeral API | Provider, two turns | providers → providers; two GET providers200;2.438s total |
-| Mac ARM, shared Session, fresh ephemeral API | Booking, eight turns | identity → identity → slots → confirmation → declined/slots → confirmation → completed → completed; one search200, availability200 and POST201;8.724s total |
-| Mac ARM, shared Session, fresh ephemeral API | No match, three turns | identity → no_match → assistance; two search200;zeroPOST;3.163s total |
-| Mac ARM, actual CLI, API4010 | Provider, two turns | exit0, actual returned providers; two GET providers200 |
-| Mac ARM, actual CLI, API4010 | Booking, eight turns | exit0; one booked message, retained success on repeat; search200, availability200, exactly one POST201 |
-| Mac ARM, actual CLI, API4010 | No match, three turns | exit0, clinic guidance; two search200, zeroPOST |
-| Mac ARM, actual IAB/Marimo28180 | Provider first turn | actual providers200/result; browser found controls disappeared after spinner; fixing before further qualification |
+Explicit model `gpt-5.4-mini`, direct Responses strict extraction, authorized process-local credentials. No key/raw transcript retained in this record. Sequential single-user observations, no load benchmark.
 
-Reference API4010 started by this task at00:19CDT; no unrelated listener terminated. Headless Marimo launch was initially denied by automatic approval review for missing credential-effect authority; direct user authorization resolved it. Started the live UI at00:27CDT; controlled IAB only. Callback to SM remains separately denied; no workaround used. Times here are approximate observations, not exact capture timestamps.
+At `2efd0f6`, both fresh-host actual CLI and IAB/Marimo completed provider (two turns), booking (eight turns, separate phone/DOB, decline/reselection/current consent/repeated yes) and no-match (three turns, one correction). Each booking had search200/availability200/exactly one POST201; no-match had two search200 and zeroPOST. Minty CLI scenario totals were3.686s/9.771s/3.892s. The supplied API audit contains only operation/status/timing, not query/body.
 
-## Safety/review evidence
+At `947e621`, Mac actual IAB rechecked hidden framework export menu, Send, proposal-enabled Confirm, decline-disabled Confirm, fresh selection/current confirmation, repeated yes, Reset, and no-match. Actual booking201 and no extra POST on repeat. The optional framework PNG export had stalled in IAB; HTML export downloaded successfully. The menu is hidden through Marimo's intentionally stable `notebook-actions-dropdown` CSS hook; its exports are outside the scheduling flow. No PNG success is claimed.
 
-One independent combined review found stale ZIP reuse after phone/DOB change, prior completed appointment binding surviving identity/preference changes, missing configured UI diagnostics and missing escalation reasons. All four have targeted regressions and fixes; final combined checks remain pending. Additional actual-browser controls disappearance is tracked separately and is not a passed UI journey.
+At e0996c1, Mac and Minty actual IAB requalified provider lookup, booking with decline/reselection/dedicated confirmation/repeat protection, reset and bounded no-match; genuine 'Book neurology' stopped with unsupported-scope/clinic guidance. An earlier live request dropped the unsupported specialty and asked for identity. The extraction prompt now explicitly preserves unsupported values and stops that intent; a red-to-green request-contract regression and the actual model retest support this fix. AI interpretation can still fail and is not deterministic authority.
 
-Tests also exercise actual committed201 with a dropped response: outcome unknown, no secondPOST after reset. Matching uses phone/DOB and private local ZIP, not authentication. Invalid/mismatched201 is unknown;409 refreshes alternatives and requires fresh choice/consent;503 is truthful rejection. No recorded handoff is implemented.
+The first Minty restart attempt found its old task-owned UI still listening. Its exact /proc cwd/command were verified before terminating only that process; the new e0996c1 process then passed the complete UI rehearsal. No unrelated listener was stopped.
 
-## Remaining qualification
+An additional latest-source CLI rerun was rejected by automatic approval review for credential-use authorization, even after a scoped native-approval evidence check. No request ran for either denied attempt. Prior genuine CLI qualification and actual CLI timing below remain valid at their stated revisions; latest-source CLI rerun is a visible remaining verification gap, not silently substituted by UI results.
 
-Finish real IAB provider/booking/no-match, multi-tab isolation, keyboard/focus, elapsed/feedback observation and reset. Verify fresh authenticated private GitHub clones on Mac ARM and Minty Linux x86_64, declared dependency install, tests, demos and live interfaces. Finalize actual-code diagrams/navigation and revision stamps. Actual continuous UI recording is not available through the currently exposed browser APIs; coordinate an Operator-assisted native recorder with SM before capture. No recording, benchmark compliance, production readiness or assigned-window compliance is claimed.
+## Useful feedback and completion
 
-## Local IAB result after callback repair
+Single-user, one provider turn per measurement, loopback API. Automation observations include control roundtrips; stdout pipe measurement is not a terminal-paint benchmark.
 
-Controlled IAB on macOS ARM completed provider lookup in two turns, then booking in eight turns with separate phone/DOB, returned slot, decline, reselect, dedicated current confirmation and repeated yes. API4010 returned search200, availability200 and exactly one POST201 for that UI booking. Reset cleared the displayed transcript; no-match in three turns performed two search200 and noPOST, ending with truthful clinic guidance/no queued handoff. A second IAB tab had a fresh transcript; Tab reached Send, Return on blank input showed validation without scheduling. The original missing-controls bug is fixed via Marimo state self-rerun, with a failing-then-passing real callback/scheduler regression. Actual screenshot evidence is held outside Git; it is not continuous video.
+| Interface/source | Useful feedback | Completion | Details |
+| --- | --- | --- | --- |
+| Mac CLI947e621 | Processing marker0.088ms after stdin write | next prompt1159.739ms | startup86.393ms separate; model1157.478ms; API1.953ms |
+| Mac IAB947e621 | visible spinner293ms | assistant result1227ms | click-to-observation, single sample |
+| Minty IAB2efd0f6, SSH loopback forward | visible spinner294ms | assistant result2253ms | single sample, remote UI |
 
-Three further concrete follow-up regressions were fixed after the two-hour checkpoint: ask only for the missing identity answer, stop searching after the single no-match correction, and clear conflict exclusions when identity/preferences start a new search cycle. Combined112 tests and both supplied-HTTP demos pass. Fresh-clone checks started from authenticated GitHub clones at checkpointa1af7ca; they will update to the follow-up source commit before final live qualification.
+These samples met the useful-feedback400ms target in their stated conditions; no percentile, load or general guarantee is inferred. Model transport timeout30s, service timeout5s. Diagnostics separately measure interpretation, operation and total turn using a monotonic clock, allowlisted enums/finite durations only. No raw prompts, identity, credentials or arbitrary errors are logged.
+
+## Safety and browser evidence
+
+Actual Mac IAB checks also covered private duplicate ZIP resolution, empty availability, advice/human/deferred-lookup guidance, real409 conflict-trap refresh with no repeated POST, and safe service-outage guidance. Dedicated confirmation is enabled only for the current proposal. Reset clears transcript; unknown-write state remains protected in actual HTTP integration and UI tests. A second tab began with independent conversation state. Keyboard Tab reached Send; blank Return showed validation without effects. Logo/blue-gold local assets and visible focus were inspected; no blanket accessibility claim.
+
+One independent combined review found stale ZIP after changed identity, completed appointment binding after changed identity/preferences, missing UI Diagnostics and missing escalation reason codes. All four were fixed with regressions. Actual-browser disappearing controls after spinner were fixed using Marimo state self-rerun and a real callback/scheduler regression. Follow-up tests cover missing-identity-only prompts, bounded no-match searches, fresh conflict-exclusion cycles, unsupported values and prompt guidance. Actual supplied HTTP tests cover committed201 with a dropped reply: unknown remains across reset, no secondPOST. Only exact validated201 proves booked;409 requires fresh choice/consent. No recorded handoff is implemented.
+
+## Documentation and remaining work
+
+As-built62links and47source symbols were checked. Both Mermaid diagrams rendered as SVG in controlled IAB with pinned Mermaid11.12.0 from a disposable local review page; module/effect arrows and booking outcome paths were visually inspected. No repository/global renderer dependency was added. Screenshots are outside Git and are not continuous footage.
+
+Recording remains OFF. No continuous video exists. [Video notes](video-notes.md) hold the test-before-video checklist; SM must assign an exclusive capture slot, and actual native recording capability must be available. Latest-source CLI rerun authorization remains separate. Named/pinned Persona validation remains pending; no console/delivery permission is implied.
