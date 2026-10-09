@@ -28,3 +28,6 @@ docs/internal/private/
 .specify/bootstrap.json
 docs/product/RFP/source/
 docs/product/RFP/manifest.json
+
+# Machine-local installer lock; never a reproducible source artifact.
+.specify/.step-install.lock

@@ -1,40 +1,62 @@
 # Code walkthrough
 
-Updated: not yet populated. Reviewed source revision: not yet recorded.
-Status: bootstrap stub; not evidence of implemented behavior.
+Updated **2026-10-09**. Reviewed source: planning baseline **`cc4535d` plus the uncommitted scheduling implementation inspected on this date**. Status: source-verified draft; the final release revision and fresh-host/browser evidence must be stamped after integration. This document describes actual files and symbols, not a readiness claim or duplicate task ledger. [T060 and dependencies](../../../specs/001-scheduling-assistant/tasks.md) remain authoritative.
 
-For humans and agents finding the code to inspect, explain or modify. Populate
-from actual implementation, not the proposed architecture. Prefer repository-relative
-file links and exact symbols; optional line references must name the reviewed
-revision because lines move. Keep this a navigation aid, not a second task ledger.
+## Start at the boundary you need
 
-## Find the relevant code
+| Concern | Actual entry points | Behavior tests and caution |
+| --- | --- | --- |
+| Terminal construction and one-turn loop | [`__main__.py`](../../../src/scheduling_assistant/__main__.py): `main`, `_session`, `Configuration` | [`test_scheduling_interfaces.py`](../../../tests/test_scheduling_interfaces.py): help/configuration make no model call; fixed safe errors; unique events/revisions; actual controller separate-consent/single-booking parity. CLI renders `View.text`; it cannot authorize a POST itself. |
+| Browser construction and submitted controls | [`scheduling_app.py`](../../../apps/scheduling_app.py): Marimo cells; [`ui_bridge.py`](../../../src/scheduling_assistant/ui_bridge.py): `configured_bridge`, `UIBridge.submit`, `render_html`, `UISnapshot` | [`test_scheduling_ui.py`](../../../tests/test_scheduling_ui.py): duplicate/stale/overlapping events, escaped transcript, session isolation, reset history and proposal confirmation. Callbacks consume turns; reading/rendering state performs no scheduling. Browser execution remains a separate qualification step. |
+| Immutable returned facts and action ownership | [`domain.py`](../../../src/scheduling_assistant/domain.py): `Preferences`, `Patient`, `Provider`, `Slot`, `Appointment`, `Proposal`, `View`, `ActionLedger`, `PROCESS_ACTIONS` | [`test_scheduling_core.py`](../../../tests/test_scheduling_core.py): invalid facts/dates, frozen snapshots, already-claimed actions and process-level unknown guard. Do not replace returned facts with model-generated ones. |
+| Consent and exact effect comparison | [`core.py`](../../../src/scheduling_assistant/core.py): `affirmative`, `choose_slot`, `matching_appointment`, `slot_description` | Core tests require standalone consent, current displayed slot membership and matching patient/provider/specialty/location/time/status. A selected option is not consent. |
+| Conversation, identity and recovery | [`session.py`](../../../src/scheduling_assistant/session.py): `Session.submit`, `_advance`, `_select`, `_book`, `_context`, `_call`, `_emit` | [`test_scheduling_session.py`](../../../tests/test_scheduling_session.py): identity before availability, private duplicate ZIP, changed identity/preferences, declined/mixed consent, refusal, conflict refresh, unknown writes and interruption. All interfaces use this owner. |
+| Advisory AI extraction | [`interpretation.py`](../../../src/scheduling_assistant/interpretation.py): `Interpretation`, `Interpreter`, `ModelError`; [`openai_adapter.py`](../../../src/scheduling_assistant/openai_adapter.py): `OpenAIInterpreter.interpret`, `_schema`, `_context` | [`test_scheduling_ai.py`](../../../tests/test_scheduling_ai.py): strict fields/no authority fields, current-turn safe context, bounded output, no redirects/retries, refusals/incomplete/malformed responses and completed reasoning before structured output. Never show arbitrary model output as scheduling evidence. |
+| Supplied service HTTP boundary | [`scheduling_api.py`](../../../src/scheduling_assistant/scheduling_api.py): `SchedulingAPI.providers`, `find_patients`, `availability`, `book`, `_request`, `APIError` | [`test_scheduling_api.py`](../../../tests/test_scheduling_api.py): loopback-only URLs, exact query/body encoding, strict response facts, bounded transport, HTTP201 matching, recognized rejections and uncertain POST responses. No automatic write retry. |
+| Safe local diagnostics | [`diagnostics.py`](../../../src/scheduling_assistant/diagnostics.py): `Diagnostics`; controller `_call`/`_emit` | [`test_scheduling_diagnostics.py`](../../../tests/test_scheduling_diagnostics.py) and session diagnostics tests: enum/timing allowlist, detached bounded snapshots, private values excluded and sink failure cannot change an action. No raw prompt, query, identity, key or exception logging. |
+| Real local service and repeatable demos | [`server.py`](../../../vendor/scheduling-reference/mock-api/server.py): supplied `Store`, `Handler`; [`demo_scheduling.py`](../../../scripts/demo_scheduling.py): `SuppliedServer`, `ScriptedInterpreter`, `run` | [`test_scheduling_integration.py`](../../../tests/test_scheduling_integration.py): actual HTTP happy/no-match/duplicate/conflict/outage/stale/committed-but-lost response; demos label scripted interpretation and clean up isolated services. These tests do not prove live AI/browser behavior. |
 
-| What you want to inspect/change | File and symbol | Relevant behavior tests | Boundary / change caution |
-| --- | --- | --- | --- |
-| Main user journey / entry point | Pending implementation | Pending | Pending |
-| Core rules and state transitions | Pending implementation | Pending | Pending |
-| External adapter / fixtures / optional integrations | Pending implementation | Pending | Pending |
-| Failure, recovery, confirmation and handoff | Pending implementation | Pending | Pending |
+Supplied source/fixtures stay unchanged under [`vendor/scheduling-reference`](../../../vendor/scheduling-reference/PROVENANCE.md). The browser loads the approved local [logo](../../../assets/ui/branding/ochsner-health.svg) and [theme](../../../assets/ui/themes/ochsner.css); [`ui-assets.md`](../ui-assets.md) records provenance. The app adds focus styles, an AI/synthetic disclosure, a processing spinner/status and escaped transcript rendering.
 
-Replace these examples with the project's useful navigation targets; mark
-inapplicable capabilities explicitly rather than implying they exist.
+## Follow one booking through the code
 
-## Small team-review change
+`main._session` or `configured_bridge` constructs the live model adapter and loopback gateway, then injects both into `Session`. Each submitted turn gets a local event ID and expected revision. `Session.submit` serializes it, returns cached duplicate results and rejects stale controls before interpretation. Reset clears conversation facts while retaining the process action ledger.
 
-Pending: identify one safe, meaningful modification, its entry symbol and test
-command. Describe any effect/authorization boundary the reviewer must preserve.
+`OpenAIInterpreter.interpret` sends current synthetic input plus limited workflow context through a strict Responses JSON schema with `store:false`. The resulting immutable `Interpretation` has no authorization/result fields. `_advance` validates preferences and privately searches exact phone+DOB. Duplicate records require a local ZIP match; candidates are never rendered or placed in model context. Provider discovery bypasses patient matching entirely.
 
-## Implementation task placement
+Only a uniquely matched patient can reach availability. The HTTP adapter validates returned available slots and filters before the controller displays them. `_select` binds one displayed slot and patient to an immutable `Proposal`. `_book` is reachable only on a later standalone affirmative turn for the unchanged proposal. The ledger claims that action before dispatch. Only a matching typed appointment from HTTP201 produces completed output.
 
-During Spec-Kit Tasks, schedule a near-final task: populate this walkthrough
-and the [as-built architecture](architecture.md) from stabilized code and tests;
-check paths/symbols, diagram accuracy and README links; stamp the reviewed revision.
-Independent sections may be drafted in parallel once their code is stable.
-Finalize after integration, before the completion handoff. This is **not a
-prerequisite for beginning implementation**. Update affected sections after changes.
+A recognized conflict records a known rejection, excludes the rejected slot, refreshes availability and requires a new choice/confirmation. Lost, malformed or mismatched write results retain unknown certainty and prevent another booking even after reset. Interrupted dispatch sets the guard before propagating interruption. Advice, human-help and unsupported/lookup requests stop scheduling with truthful clinic guidance; recorded handoff is not implemented.
 
-See [development](../development.md), [video notes](../video-notes.md) and
-[decisions](../../product/decisions.md) for commands, demonstrated claims and rationale.
-Link the relevant [milestone tag](../milestones.md) for this reviewed version;
-include actual theme/UI-asset entry points when applicable.
+## Run the current interfaces and checks
+
+First follow [setup](../../user/setup.md), including interpreter/version verification, environment configuration and ownership checks for ports4010/28180. Commands below assume the owned reference API is running and live credentials are present for the interfaces:
+
+```sh
+.venv/bin/python -m scheduling_assistant --model gpt-5.4-mini \
+  --api-base-url http://127.0.0.1:4010
+.venv/bin/marimo run apps/scheduling_app.py --headless \
+  --host 127.0.0.1 --port 28180
+```
+
+The UI reads `SCHEDULING_MODEL` and `SCHEDULING_API_URL`; the CLI also accepts `--api-url`. No automatic browser launch is needed. Controlled Codex in-app browser qualification and source recording are independent of importing the Marimo app in tests.
+
+```sh
+PYTHONPATH=src .venv/bin/python -m unittest discover -s tests -v
+PYTHONPATH=src .venv/bin/python scripts/demo_scheduling.py --scenario success
+PYTHONPATH=src .venv/bin/python scripts/demo_scheduling.py --scenario failure
+```
+
+The demos use fresh reference `Store` instances and ephemeral ports; they do not mutate the visible service on4010. For current genuine AI execution, host setup and capture evidence, consult [video notes](../video-notes.md), not test-double results. Synthetic matching is not authentication; the ledger is process-local and cannot reconcile an uncertain effect after restart.
+
+## Small teammate change: a clear specialty synonym
+
+Practice extending the interpreter's explanation so “family medicine” clearly maps to the existing `primary_care` specialty. Keep the supported API enums, controller, patient matching and consent policy unchanged. The edit belongs in `openai_adapter.py`'s `_INSTRUCTIONS`; it adds language understanding guidance, not an endpoint or permission.
+
+1. Before editing the prompt, add a failing test to `test_scheduling_ai.py` that captures the actual outgoing request instructions and requires the explicit synonym mapping. Keep the existing unknown-specialty preservation assertion and no-authority schema checks. This verifies the configured instruction, not model semantic accuracy.
+2. Add the minimal instruction, then run `PYTHONPATH=src .venv/bin/python -m unittest tests.test_scheduling_ai -v` and the full suite/demos above. Existing consent and failure tests must stay green.
+3. Separately qualify the synonym with the genuine model in a synthetic provider lookup against the owned API. Check actual returned provider filters and confirm it asks for no identity. Record the measured outcome truthfully; a transport test double cannot establish language understanding.
+
+Do not add “family medicine” to API enums, infer a patient/slot identifier, bypass confirmation or broaden unsupported specialties. If the genuine model still cannot interpret the wording reliably, preserve safe clarification and record the limitation.
+
+See [architecture](architecture.md) for the component view, [decisions](../../product/decisions.md) for trade-offs, [milestones](../milestones.md) for immutable checkpoints and [next steps](../../product/next-steps.md) for the remaining handoff.

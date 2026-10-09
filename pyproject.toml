@@ -7,7 +7,7 @@ name = "poc-template"
 version = "0.1.0"
 description = "Small, deterministic helpers for human-centered proof-of-concept projects"
 requires-python = ">=3.11"
-dependencies = []
+dependencies = ["marimo==0.25.0"]
 
 [project.optional-dependencies]
 bootstrap = ["specify-cli @ git+https://github.com/github/spec-kit.git@f1d3a4f8337ebbd3ae22760a9c12e3352b93a175"]

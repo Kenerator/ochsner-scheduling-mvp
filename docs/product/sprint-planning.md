@@ -1,9 +1,11 @@
 # PoC work increment
 
-Updated 2026-10-08. Formal sprint/dates deferred; selected increment is the approved scheduling MVP.
+Updated 2026-10-09. Formal sprint dates are deferred; the selected increment is the approved scheduling MVP. Operator owns effort-window compliance and trade-offs.
 
-Goal: provider lookup, exact confirmed booking and safe no-match assistance in both genuine live AI interfaces. Scope and acceptance: [spec](../../specs/001-scheduling-assistant/spec.md). Technical dependencies/sequencing: [plan](../../specs/001-scheduling-assistant/plan.md). Validation: [quickstart](../../specs/001-scheduling-assistant/quickstart.md).
+Goal: genuine AI provider lookup, exact confirmed booking and truthful failure assistance in both CLI and Marimo. Accepted behavior: [spec](../../specs/001-scheduling-assistant/spec.md). Design/dependencies: [plan](../../specs/001-scheduling-assistant/plan.md). Detailed work and completion: [native tasks](../../specs/001-scheduling-assistant/tasks.md).
 
-Native Tasks generation is next; no tasks.md exists yet. Assign clear owners and native [P] markers to disjoint API/AI and later CLI/UI lanes after prerequisites, then integrate before dependent work. Near-final as-built files follow stable implemented components. Local asset/UI verification and live-flow evidence remain dependencies; Persona validation is pending. Operator owns timing/compliance; no estimate implies stopping or scope reduction.
+Execute disjoint component work in parallel after stable contracts and failing behavior tests; integrate before dependent outcome checks. The shared controller owns effects. Thin CLI/UI owners cannot change identity or consent policy independently. As-built walkthrough, architecture and video documentation follow stable implemented components.
 
-Progress belongs in future native tasks, review gaps in [next steps](next-steps.md); no second completion ledger here.
+The current increment includes supplied HTTP success/failure demos, genuine live AI qualification, controlled in-app browser checks, fresh private GitHub-clone setup on both approved hosts, and honest recording/handoff evidence. Passing unit tests does not complete those checks. Persona selection remains pending; optional lookup/handoff and production controls are deferred. No extra engine or admin console is added.
+
+[Backlog](backlog.md), [roadmap](roadmap.md) and [next steps](next-steps.md) keep priorities and handoff concise; they are not duplicate completion ledgers.

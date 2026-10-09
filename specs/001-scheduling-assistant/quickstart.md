@@ -1,6 +1,6 @@
 # Quickstart validation guide
 
-Designed 2026-10-08. **Future implementation guide:** the scheduling package, app, vendor copy and demo script below do not exist yet. Commands define the planned acceptance surface; Plan has not installed dependencies, started services or qualified live AI. Generic `poc_demo` is not scheduling evidence. Contracts: [interaction](contracts/interaction.md), [service](contracts/scheduling-service.md), [data model](data-model.md).
+Updated2026-10-09. The package, app, vendor copy and demos are implemented. Automated tests and local live CLI/IAB journeys have run; fresh-clone qualification and final evidence are still in progress. Consult [verification](../../docs/internal/scheduling-verification.md) for actual results. Generic `poc_demo` is not scheduling evidence. Contracts: [interaction](contracts/interaction.md), [service](contracts/scheduling-service.md), [data model](data-model.md).
 
 ## Prerequisites and setup after implementation
 
@@ -69,7 +69,7 @@ Record sanitized scenario, model, environment, date, turn count, API operation/s
 Set explicit nonsecret `SCHEDULING_MODEL=gpt-5.4-mini` in the authorized runtime; same existing key environment. Terminal C:
 
 ```sh
-.venv/bin/marimo run apps/scheduling_app.py --host 127.0.0.1 --port 28180
+.venv/bin/marimo run apps/scheduling_app.py --headless --host 127.0.0.1 --port 28180
 ```
 
 Open http://127.0.0.1:28180. Repeat provider, booking and no-match multi-turn journeys above. Verify AI disclosure, retained answers, approved logo/colors, escaped text, labels, keyboard/focus and useful status. Submit/re-render/double-click must not duplicate turns or POST. A changed proposal invalidates old confirmation. Check independent browser sessions do not share private conversation state. Record actual browser review separately from automated parity tests; no blanket WCAG claim.

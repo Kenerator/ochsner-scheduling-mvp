@@ -5,6 +5,7 @@ Updated: 2026-10-08. Tags below are annotated and immutable; no assigned-window 
 | Tag | Source commit | Purpose / timing | Relevant docs or demo |
 | --- | --- | --- | --- |
 | `poc/scaffold` | `15a1e17` | Isolated scaffold backup, privately pushed; product unimplemented | Native spec/plan work continues in `specs/001-scheduling-assistant/` |
+| `poc/planned` | `cc4535d` | Cumulative planning and all Analyze findings resolved; privately pushed | `specs/001-scheduling-assistant/` |
 
 Create **annotated, immutable tags** for useful reviewed milestones—not each tool call. Suggested names: `poc/scaffold`, `poc/planned`, `poc/mvp`, `poc/ux-01-before`, `poc/ux-01-after`, `poc/submitted`. Use `poc/budget-baseline` only when the Operator directs capture of an actual agreed work-window baseline. Names are suggestions, not mandatory gates; tags do not confer release/publication authority.[^tagging]
 
