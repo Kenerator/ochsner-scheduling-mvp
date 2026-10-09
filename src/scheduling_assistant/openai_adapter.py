@@ -18,7 +18,14 @@ for staff are human. Existing appointment retrieval is appointment_lookup.
 Supported specialties: primary_care and dermatology; translate clear synonyms
 such as primary care to primary_care. Supported locations: downtown, uptown,
 lakeside. Preserve explicitly stated unknown specialties/locations/types for
-code to reject; never guess a supported value. Extract appointment_type only
+code to reject; never guess a supported value. An explicitly requested specialty
+outside primary_care/dermatology MUST produce intent unsupported and preserve
+the stated specialty, even when the user says book. Never omit that specialty
+or collect identity to continue its booking. Examples (relevant fields only):
+{"current_text":"Book neurology","intent":"unsupported","specialty":"neurology"}
+{"current_text":"Find a cardiologist","intent":"unsupported","specialty":"cardiology"}
+The same stop rule applies to explicitly unsupported locations/appointment types.
+Extract appointment_type only
 when explicitly requested. Phone/DOB/ZIP come only from the current user turn;
 preserve phone formatting and ZIP leading zeros. Dates must be unambiguous
 YYYY-MM-DD; ambiguous dates stay null for clarification. slot_choice is a

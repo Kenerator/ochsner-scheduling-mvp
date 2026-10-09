@@ -152,3 +152,16 @@ class OutputBoundaryTests(unittest.TestCase):
         body['output'].insert(0,{'type':'reasoning','summary':[]})
         value = OpenAIInterpreter(model='test-model',api_key='synthetic',transport=Transport(Response(body))).interpret('Advice?',{})
         self.assertEqual(value.intent,'medical_advice')
+
+class UnsupportedSpecialtyPromptTests(unittest.TestCase):
+    def test_wire_instructions_teach_unsupported_specialty_without_dropping_it(self):
+        import re
+        transport=Transport(Response(envelope(extracted(intent='unsupported',specialty='neurology'))))
+        value=OpenAIInterpreter(model='test-model',api_key='synthetic',transport=transport).interpret('Book neurology',{'state':'start','intent':'unclear'})
+        prompt=json.loads(transport.calls[0][0].data)['instructions']
+        examples=[json.loads(item) for item in re.findall(r'\{[^{}]+\}',prompt)]
+        self.assertIn({'current_text':'Book neurology','intent':'unsupported','specialty':'neurology'},examples)
+        self.assertIn({'current_text':'Find a cardiologist','intent':'unsupported','specialty':'cardiology'},examples)
+        self.assertEqual((value.intent,value.specialty),('unsupported','neurology'))
+        # Request guidance is qualified here; actual model adherence needs UAT.
+        self.assertEqual(len(transport.calls),1)
