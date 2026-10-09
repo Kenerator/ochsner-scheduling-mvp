@@ -118,7 +118,7 @@ class Session:
                         self.patient=None; self.candidates=(); self._searched=False
                         self.zip=None
         if identity_changed or changed:
-            self.proposal=None; self.slots=(); self.appointment=None
+            self.proposal=None; self.slots=(); self.appointment=None; self._excluded.clear()
         if item.intent!='unclear': self.intent=item.intent
         if self.intent=='provider_lookup':
             self.proposal=None
@@ -130,8 +130,11 @@ class Session:
         if self.ledger.unknown: return self._show(UNKNOWN,'unknown',outcome='unknown')
         if self.appointment is not None and not changed and not identity_changed:
             return self._show('Already booked: '+self.appointment.appointment_id+'. No additional booking was attempted.','completed',appointment=self.appointment,outcome='completed')
+        if self._no_matches>=2:
+            return self._show('The record could not be matched. '+ASSISTANCE+' Reset to begin a new conversation.','assistance',reason='no_match')
         if not self.phone or not self.dob:
-            return self._show('To match your synthetic patient record, provide your phone number and date of birth (YYYY-MM-DD).','identity')
+            missing=' and '.join(value for value,absent in (('phone number',not self.phone),('date of birth (YYYY-MM-DD)',not self.dob)) if absent)
+            return self._show('To match your synthetic patient record, provide your '+missing+'.','identity')
         if self.patient is None:
             if not self._searched:
                 self.candidates=self._call('find_patients',self.gateway.find_patients,self.phone,self.dob); self._searched=True

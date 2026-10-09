@@ -208,3 +208,18 @@ class EscalationDiagnosticsTests(unittest.TestCase):
         session=Session(gateway,Scripted(Interpretation('book',phone=P.phone,dob=P.dob,specialty='primary_care'),Interpretation('unclear',zip='00000')),ledger=ActionLedger(),diagnostics=sink)
         session.submit('book','one');session.submit('ZIP','two')
         self.assertEqual(sink.events[-1]['reason'],'ambiguous')
+
+class BoundedFollowupTests(unittest.TestCase):
+    def test_missing_identity_question_does_not_reask_supplied_phone(self):
+        session=Session(BookingGateway(),Scripted(Interpretation('book',phone=P.phone)),ledger=ActionLedger())
+        view=session.submit('book with phone','one')
+        self.assertIn('date of birth',view.text);self.assertNotIn('phone number',view.text)
+    def test_second_no_match_stops_further_search_until_reset(self):
+        gateway=BookingGateway(patients=());session=Session(gateway,Scripted(Interpretation('book',phone=P.phone,dob=P.dob),Interpretation('unclear',phone='555-0200'),Interpretation('unclear',phone='555-0300')),ledger=ActionLedger())
+        for n,turn in enumerate(('book','correct once','correct again')):view=session.submit(turn,str(n))
+        self.assertEqual(view.state,'assistance');self.assertEqual(len(gateway.calls),2)
+    def test_new_preferences_end_conflict_exclusion_cycle(self):
+        gateway=BookingGateway(error=APIError('conflict',409));session=Session(gateway,Scripted(Interpretation('book',phone=P.phone,dob=P.dob,specialty='primary_care'),Interpretation('unclear',slot_choice='1'),Interpretation('unclear'),Interpretation('unclear',location='downtown')),ledger=ActionLedger())
+        for n,turn in enumerate(('book','first','yes')):session.submit(turn,str(n))
+        view=session.submit('downtown please','new-search')
+        self.assertIn(S,view.slots)
