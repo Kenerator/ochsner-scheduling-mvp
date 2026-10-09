@@ -80,6 +80,9 @@ class Session:
                     valid_text(text)
                     interpretation=self._call('interpret',self.interpreter.interpret,text,self._context())
                     result=self._advance(text,interpretation)
+                except DomainError:
+                    self.proposal=None; self.slots=(); self._reason='unsupported'
+                    result=self._show('That input is outside the supported scheduling scope or uses invalid dates. Supported specialties are primary care and dermatology; locations are downtown, uptown and lakeside. Use dates in YYYY-MM-DD format. Appointment-type filtering is unavailable. '+ASSISTANCE,'assistance')
                 except APIError as error:
                     self._reason=error.reason
                     self.proposal=None; self.slots=()

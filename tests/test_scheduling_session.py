@@ -223,3 +223,9 @@ class BoundedFollowupTests(unittest.TestCase):
         for n,turn in enumerate(('book','first','yes')):session.submit(turn,str(n))
         view=session.submit('downtown please','new-search')
         self.assertIn(S,view.slots)
+
+class UnsupportedScopeTests(unittest.TestCase):
+    def test_explicit_unsupported_specialty_stops_with_reason_specific_assistance(self):
+        gateway=BookingGateway();session=Session(gateway,Scripted(Interpretation('book',specialty='neurology')),ledger=ActionLedger())
+        view=session.submit('book neurology','one')
+        self.assertEqual(view.state,'assistance');self.assertIn('supported',view.text.lower());self.assertEqual(gateway.calls,[])

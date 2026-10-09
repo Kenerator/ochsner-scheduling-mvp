@@ -37,6 +37,9 @@ def _(bridge, mo):
 def _(mo, root):
     _theme = (root / 'assets/ui/themes/ochsner.css').read_text()
     _style = '''
+    /* Marimo 0.25 preserves this hook for custom CSS. Framework exports
+       are outside this scheduling demo; avoid exposing an unreliable PNG action. */
+    [data-testid="notebook-actions-dropdown"] {display:none !important;}
     .scheduling-header {border-top:6px solid var(--brand-primary);padding:1.25rem 0;}
     .scheduling-header h1 {color:var(--brand-primary);font-size:1.7rem;}
     .turn {border-left:3px solid var(--brand-primary);padding:.6rem 1rem;margin:.8rem 0;background:var(--surface);color:var(--text);}
