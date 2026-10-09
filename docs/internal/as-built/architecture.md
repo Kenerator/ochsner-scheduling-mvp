@@ -83,3 +83,6 @@ Operational limits: synthetic identity matching is not authentication; user text
 Reviewed application source `e0996c1c8a438b6b6bfeff5283b5b3b02ddd8e69` includes `src/scheduling_assistant/{__init__,__main__,domain,core,session,interpretation,openai_adapter,scheduling_api,diagnostics,ui_bridge}.py`, `apps/scheduling_app.py`, `scripts/demo_scheduling.py` and `tests/test_scheduling_{core,session,api,ai,interfaces,ui,diagnostics,integration}.py`. The DomainError guidance and narrow menu selector are committed, as are explicit unsupported-intent extraction examples and their request-contract regression.
 
 Both actual architecture Mermaid blocks rendered as SVG in controlled IAB using disposable pinned Mermaid 11.12.0. The qualification owner visually checked the module/effect arrows and booking outcome paths; screenshot evidence stays outside Git. Navigation and referenced symbols were checked against actual files. No repository/global renderer dependency was added. The surrounding prose also explains the boundaries without requiring diagram rendering.
+
+
+Post-checkpoint evidence update: genuineCLI provider/booking/no-match passed bothhosts at3a3091c afterdirectOperatorauthorization; this resolves the earlier latestCLIrerun gap. Applicatione0996c1 unchanged; [verification](../scheduling-verification.md) is canonical.

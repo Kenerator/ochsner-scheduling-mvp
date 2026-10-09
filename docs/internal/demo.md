@@ -1,6 +1,6 @@
 # At-most-five-minute scheduling walkthrough
 
-Updated 2026-10-09. This runbook covers actual implemented scheduling flows and design trade-offs. Live CLI and controlled IAB flows passed on macOS ARM and Minty Linux at `2efd0f6` with gpt-5.4-mini and the supplied synthetic API. Final application e0996c1 UI retests passed on both hosts; see canonical verification for the blocked additional latest-source CLI rerun. It is **not a completed recording**. See [video notes](video-notes.md) for capture ownership, pending metadata and evidence boundaries.
+Updated 2026-10-09. This runbook covers actual implemented scheduling flows and design trade-offs. Live CLI and controlled IAB flows passed on macOS ARM and Minty Linux at `2efd0f6` with gpt-5.4-mini and the supplied synthetic API. Final application e0996c1 UI retests passed on both hosts; see canonical verification for the completed post-checkpoint latest-source CLI qualification. It is **not a completed recording**. See [video notes](video-notes.md) for capture ownership, pending metadata and evidence boundaries.
 
 Prepare the owned API on 4010 and headless Marimo on 28180 using [setup](../user/setup.md). Configure live model/key in the process environment; keep credentials out of view. Reset the owned API before the happy take so slots are fresh, and reset the conversation between journeys. Use the controlled Codex in-app browser, approved local logo/theme, supplied synthetic inputs and normal-speed recording. Coordinate the shared capture slot; never overwrite a take.
 

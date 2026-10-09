@@ -20,7 +20,7 @@ At e0996c1, Mac and Minty actual IAB requalified provider lookup, booking with d
 
 The first Minty restart attempt found its old task-owned UI still listening. Its exact /proc cwd/command were verified before terminating only that process; the new e0996c1 process then passed the complete UI rehearsal. No unrelated listener was stopped.
 
-An additional latest-source CLI rerun was rejected by automatic approval review for credential-use authorization, even after a scoped native-approval evidence check. No request ran for either denied attempt. Prior genuine CLI qualification and actual CLI timing below remain valid at their stated revisions; latest-source CLI rerun is a visible remaining verification gap, not silently substituted by UI results.
+An additional CLI rerun was initially rejected by automatic approval review; neither denied attempt ran. The Operator then directly instructed RC-1 without this coverage, post-three-hour CLI resolution and another RC. After the verified checkpoint, genuine actualCLI provider(two turns), booking(eight turns with decline/reselection/separate consent/repeat guard) and no-match(three turns) passed on both clean hosts at RC-1 source `3a3091cbe49e250617741d983bf11f0c70428f21` (application e0996c1 unchanged). Mac API audit: two providers200, search200/availability200/exactly onePOST201 for booking, two search200/zeroPOST for no-match. Minty owned ephemeral suppliedHTTP independently confirms the same operation counts/statuses; scenario totals3.133s/8.882s/2.978s. All CLI processes exited0; no credentials/transcripts persisted. This resolves the CLI coverage gap for RC-2.
 
 ## Useful feedback and completion
 
@@ -44,4 +44,4 @@ One independent combined review found stale ZIP after changed identity, complete
 
 As-built62links and47source symbols were checked. Both Mermaid diagrams rendered as SVG in controlled IAB with pinned Mermaid11.12.0 from a disposable local review page; module/effect arrows and booking outcome paths were visually inspected. No repository/global renderer dependency was added. Screenshots are outside Git and are not continuous footage.
 
-Recording remains OFF. No continuous video exists. [Video notes](video-notes.md) hold the test-before-video checklist; SM must assign an exclusive capture slot, and actual native recording capability must be available. Latest-source CLI rerun authorization remains separate. Named/pinned Persona validation remains pending; no console/delivery permission is implied.
+Recording remains OFF. No continuous video exists. [Video notes](video-notes.md) hold the test-before-video checklist; SM must assign an exclusive capture slot, and actual native recording capability must be available. Latest-source CLI coverage is resolved after direct Operator authorization, as recorded above. Named/pinned Persona validation remains pending; no console/delivery permission is implied.

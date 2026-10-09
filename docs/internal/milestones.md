@@ -37,3 +37,10 @@ Consider one near-final or explicitly deferred task to populate the [review repo
 ## 2026-10-09 two-hour progress checkpoint
 
 Immutable annotated `poc/checkpoint-2h-20261009` points to `a1af7ca24fd555bdfc5de669c82ab93c1dd15fd9`. Actual clean-tree capture00:42:37.999130CDT; target00:41:01CDT;97seconds late. Existing private origin main and peeled tag were verified at that exact SHA after non-force pushes. This is progress, not completion: local live CLI/IAB journeys passed; fresh-host, final documentation and video work remained. All writers were quiescent; implementation resumed immediately.
+
+
+## 2026-10-09 three-hour checkpoint and RCs
+
+Immutable annotated `poc/checkpoint-3h-20261009` and `RC-1` resolve to `3a3091cbe49e250617741d983bf11f0c70428f21`. Three-hour actual clean capture01:41:06.357331CDT, target01:41:01CDT,5.357seconds late. All writers quiescent, clean tree; non-force private main and peeled checkpoint verified. RC-1 created06:41:48.936695UTC, explicitly Operator-approved without latestCLIcoverage; remote peeledRC-1 verified. Neither tag implies finishedvideo/publication/productionreadiness.
+
+Immediately resumed approved work. Post-checkpoint genuineCLI flows passed on both clean hosts at3a3091c, resolving RC-1's knowncoveragegap. RC-2 will annotate the following documentation-only evidence commit; its exactSHA/timestamp live in the immutable tag annotation, avoiding a self-referential commit record. Application bytes remain e0996c1. See [verification](scheduling-verification.md).

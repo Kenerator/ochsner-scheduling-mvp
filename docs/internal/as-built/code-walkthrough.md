@@ -63,3 +63,6 @@ Do not add “family medicine” to API enums, infer a patient/slot identifier, 
 See [architecture](architecture.md) for the component view, [decisions](../../product/decisions.md) for trade-offs, [milestones](../milestones.md) for immutable checkpoints and [next steps](../../product/next-steps.md) for the remaining handoff.
 
 Both diagrams in [architecture](architecture.md) rendered as SVG and were visually inspected in controlled IAB with pinned Mermaid 11.12.0. Disposable rendering added no repository/global dependency; screenshots remain outside Git.
+
+
+Post-checkpoint evidence update: genuineCLI provider/booking/no-match passed bothhosts at3a3091c afterdirectOperatorauthorization; this resolves the earlier latestCLIrerun gap. Applicatione0996c1 unchanged; [verification](../scheduling-verification.md) is canonical.

@@ -1,6 +1,6 @@
 # Local setup
 
-Updated 2026-10-09. Run commands from the repository root. Verify **Python 3.11+** before creating the environment; substitute an explicit compatible executable if `python3` selects an older version. Development has used CPython 3.12.12 on macOS ARM. Fresh authenticated GitHub clones on macOS ARM and Minty Linux passed installation,114 tests and both demos at e0996c1. Genuine CLI qualification is recorded at2efd0f6; final-source UI requalification passed on both hosts. See [verification](../internal/scheduling-verification.md) for the separately blocked additional CLI rerun.
+Updated 2026-10-09. Run commands from the repository root. Verify **Python 3.11+** before creating the environment; substitute an explicit compatible executable if `python3` selects an older version. Development has used CPython 3.12.12 on macOS ARM. Fresh authenticated GitHub clones on macOS ARM and Minty Linux passed installation,114 tests and both demos at e0996c1. Genuine CLI qualification is recorded at2efd0f6; final-source UI requalification passed on both hosts. See [verification](../internal/scheduling-verification.md) for the completed post-checkpoint liveCLI coverage.
 
 ```sh
 git clone https://github.com/Kenerator/ochsner-scheduling-mvp.git
@@ -66,7 +66,7 @@ UI, in a separate terminal with the same environment:
   --host 127.0.0.1 --port 28180
 ```
 
-Open the URL printed by Marimo in the controlled Codex in-app browser for qualification. `--headless` prevents automatic browser launch. The UI reads `SCHEDULING_API_URL`; the CLI URL is set by its argument. Provider, booking with decline/separate consent/repeat guard, and no-match were exercised in controlled IAB on macOS ARM. Both fresh-clone hosts passed final-source UI rehearsal; exact revisions and the additional CLI-rerun limitation are in [verification](../internal/scheduling-verification.md).
+Open the URL printed by Marimo in the controlled Codex in-app browser for qualification. `--headless` prevents automatic browser launch. The UI reads `SCHEDULING_API_URL`; the CLI URL is set by its argument. Provider, booking with decline/separate consent/repeat guard, and no-match were exercised in controlled IAB on macOS ARM. Both fresh-clone hosts passed final-source UI rehearsal; exact revisions and the completed post-checkpoint CLI coverage are in [verification](../internal/scheduling-verification.md).
 
 ## Verification and reset
 
