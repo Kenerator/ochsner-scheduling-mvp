@@ -1,6 +1,6 @@
 # Code walkthrough
 
-Updated **2026-10-09**. Reviewed application source: **`e0996c1c8a438b6b6bfeff5283b5b3b02ddd8e69`**. Both fresh Mac/Minty clones passed 114 tests and both demos; the qualification owner completed genuine final-source IAB provider/booking/reset/no-match/unsupported-specialty flows on both hosts. Prior genuine CLI evidence remains at its recorded revisions; an additional latest-source CLI rerun was blocked by automatic approval review for credential-use authorization. See [verification](../scheduling-verification.md) for that explicit gap. This document describes actual symbols, not a duplicate completion ledger; [native tasks](../../../specs/001-scheduling-assistant/tasks.md) own progress.
+Updated **2026-10-09**. Latest reviewed application source: **`8716779d10c4498cdd3cf3a8d62f7fd1c03d0537`**. Both fresh Mac/Minty clones pass118 tests and both demos. Prior full genuine CLI/IAB flows are documented at RC-2; latest affected actualCLI and both-host IAB support/numbered/keyboard checks passed. The earlier additional CLI authorization gap is resolved; [verification](../scheduling-verification.md) preserves exact source evidence.
 
 ## Start at the boundary you need
 
@@ -48,7 +48,7 @@ PYTHONPATH=src .venv/bin/python scripts/demo_scheduling.py --scenario failure
 .venv/bin/marimo check --strict apps/scheduling_app.py
 ```
 
-The demos use fresh reference `Store` instances and ephemeral ports; they do not mutate the visible service on4010. For exact current genuine AI execution and host evidence consult [verification](../scheduling-verification.md); [video notes](../video-notes.md) distinguish tested flows from recordings. Final-source IAB flows passed on both hosts. Genuine CLI journeys at `2efd0f6` and CLI timing at `947e621` are recorded separately from the blocked additional latest-source CLI rerun. Test-double results are not live model evidence. Synthetic matching is not authentication; the ledger is process-local and cannot reconcile an uncertain effect after restart.
+The demos use fresh reference `Store` instances and ephemeral ports; they do not mutate the visible service on4010. For exact current genuine AI execution and host evidence consult [verification](../scheduling-verification.md); [video notes](../video-notes.md) distinguish tested flows from recordings. Final-source IAB flows passed on both hosts. Genuine CLI journeys at3a3091c resolved the earlier rerun gap; latest8716779 affected support guidance also passed actualCLI. Earlier CLI timing at947e621 remains a source-specific sample. Test-double results are not live model evidence. Synthetic matching is not authentication; the ledger is process-local and cannot reconcile an uncertain effect after restart.
 
 ## Small teammate change: a clear specialty synonym
 
@@ -66,3 +66,8 @@ Both diagrams in [architecture](architecture.md) rendered as SVG and were visual
 
 
 Post-checkpoint evidence update: genuineCLI provider/booking/no-match passed bothhosts at3a3091c afterdirectOperatorauthorization; this resolves the earlier latestCLIrerun gap. Applicatione0996c1 unchanged; [verification](../scheduling-verification.md) is canonical.
+
+
+## Persona follow-on source review —2026-10-09
+
+Latest application8716779: `Session._support_context` renders a local privacy-preserving Known/Missing/Bookingoutcome summary for human intent. `_booking_outcome` is reset with changedidentity/preferences and tracks completed/knownrejected/unknownwrites; processledgerunknownwins evenafterreset. The humanView preservescertainty and unknownDoNotRetrywarning; no new service/deliveryeffect. `PersonaBehaviorTests` codify existingnumberedrecovery/failed-modelconsent and tests-firstsupportfix; actualHTTP lostresponse regression includes humanhelp.118tests/demosfreshbothhosts, actualCLI andMac/MintyIAB affectedguidance/keyboardflows passed. Existing module/state diagrams retaincorrectboundaries; no new architecturecomponent. Exactpins/cards and source map in [Personas](../../product/personas.md), canonical [verification](../scheduling-verification.md).

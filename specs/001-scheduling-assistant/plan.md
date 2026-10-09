@@ -26,7 +26,7 @@ Build genuine multi-turn AI provider discovery and confirmed booking in a termin
 
 **Constraints**: synthetic inputs only; no raw sensitive logs; OPENAI_API_KEY from environment, required explicit model (`gpt-5.4-mini` qualification target); no credential store dependency. Approved local sponsor assets required; SVG/CSS and provenance index appeared during planning and are present at final inspection, unmodified by this stage. No optional integrations or production/authentication claim. Operator owns assignment window; MLX owns remote provisioning.
 
-**Scale/Scope**: one candidate, two interfaces, provider lookup and booking plus all reachable safety failures. primary_care/dermatology and downtown/uptown/lakeside per API. Persona selection/validation remains explicitly pending for primary user and Support/Admin.
+**Scale/Scope**: one candidate, two interfaces, provider lookup and booking plus all reachable safety failures. primary_care/dermatology and downtown/uptown/lakeside per API. Approved focused follow-on selects Jules/Ellie-Rae, human support Morgan-Rae and agent QA Sam-Rae; actual user validation remains pending.
 
 ## Constitution Check
 
@@ -113,8 +113,11 @@ Deterministic messages render validated returned facts. The AI never renders aut
 
 ## Complexity Tracking
 
-No Constitution violations requiring justification. Prototype limitations: process-local state, synthetic identity rather than authentication, fixed mock time offset, no durable idempotency or concurrent production booking guarantee, no automatic unknown-write reconciliation, unresolved Personas and unverified local asset/UI integration integration. Record actual evidence/debt at implementation handoff without shrinking accepted scope.
+No Constitution violations requiring justification. Prototype limitations: process-local state, synthetic identity rather than authentication, fixed mock time offset, no durable idempotency or concurrent production booking guarantee, no automatic unknown-write reconciliation, unvalidated Persona hypotheses and the documented prototype limitations. Record actual evidence/debt at implementation handoff without shrinking accepted scope.
 
 ## Analyze remediation — 2026-10-08
 
 All findings fixed under standing fix-all direction: T059 now requires fresh authenticated private GitHub clones on both approved hosts; T056 preserves bounded existing process-local credential qualification authority without reviewer Bitwarden dependency; T067 records current verified private remote/non-force milestone push authority. No public publication or credential-change grant is added. All17 functional requirements remain covered.
+
+
+Approved follow-on actual design: `Session._support_context` projects allowlisted supported preferences, missing matching field names and `_booking_outcome`; process ledger unknown takes precedence. This is local user-readable guidance with no new service/transfer. Existing adapters remain thin. See native spec follow-on and as-built source8716779.

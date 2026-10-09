@@ -4,7 +4,7 @@
 
 **Created**: 2026-10-08
 
-**Status**: Ready for planning — Q1 resolved by explicit developer answer on 2026-10-08.
+**Status**: Implemented and qualified; approved focused Persona follow-on reconciled 2026-10-09.
 
 **Input**: Include the client requirements indexed by docs/product/RFP/README.md; reconcile background stories and Persona mappings with supplied intake.
 
@@ -16,11 +16,11 @@
 
 ## User Scenarios & Testing *(mandatory)*
 
-Sources: [assignment](../../docs/product/RFP/source/assignment.md), [policies](../../docs/product/RFP/source/policies.md), [scenarios](../../docs/product/RFP/source/scenarios.yaml). Story wording is inferred from specified journeys; origin is separate from scope acceptance. All stories map to unresolved primary-user or Support/Admin Persona placeholders in [Personas](../../docs/product/personas.md). No named or pinned Persona was supplied; synthetic patient names are fixtures, not validated Personas. Select and validate Personas in follow-on work.
+Sources: [assignment](../../docs/product/RFP/source/assignment.md), [policies](../../docs/product/RFP/source/policies.md), [scenarios](../../docs/product/RFP/source/scenarios.yaml). Story wording is inferred from specified journeys; origin is separate from scope acceptance. Approved follow-on maps US1–3 to exact pinned Jules and Ellie-Rae hypotheses, US4 to human support Morgan-Rae and agent QA Sam-Rae in [Personas](../../docs/product/personas.md). Synthetic patient names remain fixtures. The selected hypotheses are not real-user validation or permissions; origin and accepted scope remain separate.
 
 ### User Story 1 - Find providers (Priority: P1)
 
-As the unresolved primary-user Persona, I want to ask which providers serve my specialty and location, so I can explore options without giving patient identity information.
+As Jules, with Ellie-Rae’s constrained-input lens, I want to ask which providers serve my specialty and location, so I can explore options without giving patient identity information.
 
 **Origin / scope**: INFERRED wording from assignment Required 1–3 and `provider_lookup`; capability explicitly required.
 
@@ -36,7 +36,7 @@ As the unresolved primary-user Persona, I want to ask which providers serve my s
 
 ### User Story 2 - Confirm and book an appointment (Priority: P1)
 
-As the unresolved primary-user Persona, I want to identify myself, choose an available appointment and explicitly confirm it, so I control booking and know whether it succeeded.
+As Jules, with Ellie-Rae’s constrained-input lens, I want to identify myself, choose an available appointment and explicitly confirm it, so I control booking and know whether it succeeded.
 
 **Origin / scope**: INFERRED wording from assignment Required 1, 2, 4, policies and `happy_path_booking`; explicitly required.
 
@@ -55,7 +55,7 @@ As the unresolved primary-user Persona, I want to identify myself, choose an ava
 
 ### User Story 3 - Resolve identity safely and obtain help (Priority: P1)
 
-As the unresolved primary-user Persona, I want a specific explanation and safe next step when scheduling cannot proceed, so I do not see another patient's details or mistake failure for success.
+As Jules, with Ellie-Rae’s constrained-input lens, I want a specific explanation and safe next step when scheduling cannot proceed, so I do not see another patient's details or mistake failure for success.
 
 **Origin / scope**: INFERRED wording from assignment Required 5, policies, `no_patient_match`, `multiple_patient_matches` and recommended failure scenarios. No-match is the selected required demonstration failure; policy safety applies to every reachable failure independently of optional harness scope.
 
@@ -74,7 +74,7 @@ As the unresolved primary-user Persona, I want a specific explanation and safe n
 
 ### User Story 4 - Inspect safe recovery context (Priority: P2)
 
-As the unresolved Support/Admin Persona, I want accurate diagnostics and recovery context, so I can understand failures without exposing sensitive identifiers or making the user repeat work.
+As Morgan-Rae, the human Support/Admin hypothesis, I want accurate diagnostics and recovery context, so I can understand failures without exposing sensitive identifiers or making the user repeat work.
 
 **Origin / scope**: INFERRED background support seed reconciled with policy Observability and assignment documentation. Diagnostic coverage is required by policy; no admin console or delivery permission is inferred.
 
@@ -89,7 +89,7 @@ As the unresolved Support/Admin Persona, I want accurate diagnostics and recover
 
 ### User Story 5 - Look up existing appointments (Priority: P2, optional deferred)
 
-As the unresolved primary-user Persona, I want to verify my identity and see my existing appointments, so I understand my scheduled care.
+As Jules, with Ellie-Rae’s constrained-input lens, I want to verify my identity and see my existing appointments, so I understand my scheduled care.
 
 **Origin / scope**: INFERRED wording from assignment Good-to-have and `multiple_patient_matches`. Developer Q1 selects the approved common contract: assignment, policies and public service contract take precedence; existing appointment lookup is optional and deferred from the MVP. The duplicate-match protection is retained within required booking (US3.2).
 
@@ -168,7 +168,18 @@ As the unresolved primary-user Persona, I want to verify my identity and see my 
 - Developer Q1 explicitly resolves source precedence in favor of assignment, policies and public service contract over conflicting scenario priority labels. Duplicate-match identity protection remains required within booking. The scenario requesting a recorded handoff during an outage does not override optional handoff scope or justify a false queued claim when the service cannot accept it. Recommended scenarios provide reproducible safety cases; they do not authorize optional integrations.
 - The supplied local scheduling service/public contract is authoritative. Runtime facts must come from it, not direct fixture inspection. Fixtures have relative dates, a hidden conflict marker and fixed time offset; mock state is in memory, without production durability/security guarantees. Implementation-specific operation mapping belongs in the plan.
 - No new-patient registration, clinical advice, real patient data, real scheduling system, authenticated admin console or production deployment is included. Unsupported appointment types lead to human assistance.
-- Primary-user and Support/Admin Persona selection/validation are pending; no demographic constraints are invented. The support seed is reconciled in US4 and served through diagnostics/documentation without adding a console or permissions.
+- Exact primary-user and Support/Admin Persona pins are selected; actual user validation remains pending and no demographic constraints are invented. The support seed is reconciled in US4 and served through diagnostics/documentation without adding a console or permissions.
 - AI behavior and live flow qualification remain required for the MVP. Planning must distinguish AI interpretation, service facts and enforced policy, simulated tests and actual live evidence. Exact developer-supplied delivery constraints and model availability qualification are retained in [Q1 scope decisions](scope-decisions.md); availability is a supplied qualification, not verified by Specify. This stage performs no credential access or external model calls.
 - The assignment requests a repository link, README and at-most-five-minute video, a three-hour coding window and video due 30 minutes afterward. Operator owns compliance and timing tradeoffs; package receipt time and compliance are unverified. Its requested statement “I completed this within the assigned 3-hour window.” MUST NOT be asserted without evidence. Publication, pushes, video production/submission and deployment are outside this stage's authorization.
 - Follow-on implementation must populate actual-code architecture/walkthrough near completion, finalize dated actual-code video notes, maintain a short linked next-step handoff and provide a small teammate modification exercise. These are future project obligations, not work completed by Specify.
+
+
+## Approved focused Persona follow-on —2026-10-09
+
+Origin: Operator-approved reuse of shared pinned hypotheses, not supplied client research. US1–3 use Jules and Ellie-Rae; US4 uses human Morgan-Rae and agent QA Sam-Rae. [Local pins/cards](../../docs/product/personas.md) preserve exact source ancestry without changing historical bootstrap records. Scope remains original MVP; no console, phone channel, actual transfer or additional service is selected.
+
+- Ellie-Rae: invalid numbered choice retains returned options and matched context; fresh valid selection and separate confirmation remain required. This was verified existing behavior.
+- Sam-Rae: failed model interpretation clears pending consent; later yes cannot book until a fresh selection. This was verified existing behavior.
+- Morgan-Rae: a request for human help presents local known supported preferences, missing matching field names and actual booking certainty. It never echoes private identity values/candidates, erases unknown/no-retry truth, performs a transfer or claims queued delivery. This drove a tests-first implementation repair. Completed/known-rejected/unknown outcomes remain distinguishable.
+
+118tests, actual suppliedHTTP lost-response support regression, fresh-host demos, actualCLI support checks and actualMac/MintyIAB numbered recovery/keyboard confirmation/support guidance qualify this follow-on at application8716779. No actual-user validation or accessibility certification is inferred.

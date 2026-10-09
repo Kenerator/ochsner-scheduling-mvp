@@ -44,3 +44,8 @@ Immutable annotated `poc/checkpoint-2h-20261009` points to `a1af7ca24fd555bdfc5d
 Immutable annotated `poc/checkpoint-3h-20261009` and `RC-1` resolve to `3a3091cbe49e250617741d983bf11f0c70428f21`. Three-hour actual clean capture01:41:06.357331CDT, target01:41:01CDT,5.357seconds late. All writers quiescent, clean tree; non-force private main and peeled checkpoint verified. RC-1 created06:41:48.936695UTC, explicitly Operator-approved without latestCLIcoverage; remote peeledRC-1 verified. Neither tag implies finishedvideo/publication/productionreadiness.
 
 Immediately resumed approved work. Post-checkpoint genuineCLI flows passed on both clean hosts at3a3091c, resolving RC-1's knowncoveragegap. RC-2 will annotate the following documentation-only evidence commit; its exactSHA/timestamp live in the immutable tag annotation, avoiding a self-referential commit record. Application bytes remain e0996c1. See [verification](scheduling-verification.md).
+
+
+## Approved shared Persona milestones
+
+`poc/personas-introduced-v1`→667a08b685a3667c8f0e3101163762b0fd446645, remotelypeeledverified; exactfourpins/threeancestors/cards/stories, no productimpactincluded. Application8716779 thenrepairs Morgan-Rae supportcertainty/context withtests-firstregressions; Ellie/Samchecks verifyexistingbehavior. Bothfreshhosts118tests+demos and actualaffectedCLI/IAB checks passed. `poc/personas-impact-v1` and nextunusedRC-3 will annotate the finaldocs/evidencecommit with unchanged8716779 applicationbytes; exactSHA/actualtime in immutableannotations. No documentation-only impactclaim; videoONHOLD.

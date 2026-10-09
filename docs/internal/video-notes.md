@@ -1,10 +1,12 @@
+> CurrentOperatordirection2026-10-09: NO FURTHER VIDEO CAPTURE unless explicitlyauthorized. Only qualifiedactualIABstills/text may be supplied under currentmedia grant; earlierrecording plans below are superseded.
+
 # Video production notes
 
 Updated **2026-10-09**. This is the canonical MVP capture handoff and overview script context. Genuine live CLI and controlled Codex in-app browser qualification on macOS ARM and Minty Linux passed provider lookup, multi-turn confirmed booking and no-match assistance at source `2efd0f6` with **gpt-5.4-mini** and the actual supplied synthetic HTTP service. **Recording remained OFF during qualification; no continuous UI recording has been saved.** The available automation surface has no supported recorder API; Operator native recording is the fallback. Capture may continue after the three-hour checkpoint; no assigned-window compliance or finished-video claim is made.
 
 ## Product, audience and evidence
 
-The assistant helps a user explore returned providers without identity, then privately match a synthetic record and control an exact booking. [US1–3](../product/user-stories.md) hold this coverage; [US4](../../specs/001-scheduling-assistant/spec.md#user-story-4---inspect-safe-recovery-context-priority-p2) supports safe diagnosis/recovery through code and documentation, not an admin console. Named, pinned primary-user and Support/Admin Personas remain pending in [Personas](../product/personas.md). Fixture names are not validated Personas.
+The assistant helps a user explore returned providers without identity, then privately match a synthetic record and control an exact booking. [US1–3](../product/user-stories.md) hold this coverage; [US4](../../specs/001-scheduling-assistant/spec.md#user-story-4---inspect-safe-recovery-context-priority-p2) supports safe diagnosis/recovery through code and documentation, not an admin console. Exact pinned Jules/Ellie-Rae, human Morgan-Rae and agent QA Sam-Rae hypotheses are adopted in [Personas](../product/personas.md). Fixture names are not validated Personas.
 
 The implemented Python stack is a reusable `Session` controller, immutable domain facts/action ledger, direct strict Responses interpreter, standard-library scheduling HTTP adapter, thin CLI and Marimo 0.25.0 form/transcript. No added backend, database or rules engine. Approved local Ochsner logo/theme are visible in the UI. See [walkthrough](as-built/code-walkthrough.md), [architecture](as-built/architecture.md), [assets](ui-assets.md) and [decisions](../product/decisions.md).
 
@@ -88,3 +90,12 @@ Processing indicators and measured elapsed times exist; no universal 400 ms or c
 
 
 Post-three-hour update: actualCLI provider/booking/no-match qualified on bothhosts at3a3091c; RC-1 coveragegap resolvedforRC-2. Applicatione0996c1. RecordingstillOFF/nofootage. ExclusiveSMcapture slot andnative recorderremainrequired.
+
+
+## Final Persona impact and end-scroll handoff
+
+CandidateRC-3, applicationSHA8716779d10c4498cdd3cf3a8d62f7fd1c03d0537. ExactfinalRCcommit/docsSHA is provided in the immutabletagannotation and the postpushmediahandoff; applicationbytesunchanged. NoMVPvideo exists.
+
+End-scroll text: MVP supports genuine AI provider lookup, private synthetic matching and exact confirmed booking through CLI and Marimo, using the supplied synthetic HTTP API. One reusable Session owns consent, returned facts and protection against unsafe retries. Jules and Ellie-Rae checks confirmed numbered recovery and keyboard control. Morgan-Rae drove a tested repair that preserves known facts, missing information and true booking certainty when asking for support. Agent QA Sam-Rae checks retained stale-consent and unsafe-retry protection. All 118 tests, both fresh-host demos, live CLI and affected IAB flows pass. Persona needs remain hypotheses; matching is not authentication, state is volatile, and appointment lookup and recorded handoff are deferred. Production integration, durable reconciliation and real-user validation remain next steps. Video is on hold; the supplied stills show actual verified UI states.
+
+Requestedstills: branded currentproviderresults/mode and strongest truthfulsupportrepair state. Record runtimeapplicationSHA, finalRC/tagSHA, docsSHA and synthetic/genuineAI distinctions in sidecarJSON. Neveroverwriteoriginals or claim a screenshot is a video.

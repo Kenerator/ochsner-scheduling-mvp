@@ -45,3 +45,12 @@ One independent combined review found stale ZIP after changed identity, complete
 As-built62links and47source symbols were checked. Both Mermaid diagrams rendered as SVG in controlled IAB with pinned Mermaid11.12.0 from a disposable local review page; module/effect arrows and booking outcome paths were visually inspected. No repository/global renderer dependency was added. Screenshots are outside Git and are not continuous footage.
 
 Recording remains OFF. No continuous video exists. [Video notes](video-notes.md) hold the test-before-video checklist; SM must assign an exclusive capture slot, and actual native recording capability must be available. Latest-source CLI coverage is resolved after direct Operator authorization, as recorded above. Named/pinned Persona validation remains pending; no console/delivery permission is implied.
+
+
+## Final approved Persona follow-on qualification
+
+Application `8716779d10c4498cdd3cf3a8d62f7fd1c03d0537`; intro667a08b. Exactselectedcatalog/cards and three requiredancestors validated againstsourcepack; no sharedcatalog/bootstraphistory mutation. Morgan’s missing known/missing/outcome support projection failed before repair; invalidordinal and failed-model consent checks alreadypassed. New helper preservescompleted/knownrejected/unknown View.outcome, ledgerunknownpriority and no-retrywarning; private phone/DOB/ZIP/patientIDs/candidates neverenterthesummary, no transferPOST/claim. ActualHTTP committed201/lostreply regression now includes staffhelp→unknown/noadditionalPOST.
+
+FreshMac118tests1.371s; Minty118tests4.124s; bothdemos+strictcheckpass at8716779. ActualMacCLI gpt5.4mini oneprocess7turns/10.155s: bookphonewithoutDOB→humanhelp retainedKnownprefs/MissingDOB/notattempted; reset→fullidentity→firstoption→yes→humanhelp retainedcompleted/noqueued. All12safeassertionspass, exactlyonebookedmessage, exit0/stderrempty. ActualMac andMintyIAB repeatedmissingDOB/help, reset, fullidentity, invalid99 retainedall3returnedoptions, numericchoice, keyboardReturnoncurrentConfirm, validatedbookedresult and humanhelp→completed. No model/servicevalues beyondsyntheticfactsinvented. Existing knownrejected/unknown summary branches have meaningfultests/actualHTTPcoverage; no claim of separate liveunknownUIfaultinjection.
+
+Video remainsONHOLD. Actualstillimages may be supplied afterfinalRCunderdirectOperatorgrant; screenshots do notclaimcontinuousvideo. SelectedPersonas remainhypotheses, notrealuservalidation. Finalfollowoncode qualified; docs-onlyfinalcommit doesnotchange applicationbytes.

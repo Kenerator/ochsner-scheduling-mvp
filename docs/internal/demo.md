@@ -1,3 +1,5 @@
+> VIDEOONHOLD: no further video capture without explicitOperatorauthorization; qualifiedactualstills/text only.
+
 # At-most-five-minute scheduling walkthrough
 
 Updated 2026-10-09. This runbook covers actual implemented scheduling flows and design trade-offs. Live CLI and controlled IAB flows passed on macOS ARM and Minty Linux at `2efd0f6` with gpt-5.4-mini and the supplied synthetic API. Final application e0996c1 UI retests passed on both hosts; see canonical verification for the completed post-checkpoint latest-source CLI qualification. It is **not a completed recording**. See [video notes](video-notes.md) for capture ownership, pending metadata and evidence boundaries.
@@ -65,3 +67,6 @@ PYTHONPATH=src .venv/bin/python scripts/demo_scheduling.py --scenario failure
 These demos use actual isolated HTTP service instances and a clearly labeled **scripted interpreter**; they are repeatable integration checks, not live AI or browser footage. Live CLI/UI host qualification is established at `2efd0f6`; final clone/release evidence is tracked in the native tasks. Latest unsupported-specialty and framework-menu UI deltas passed actual IAB retests on both hosts at e0996c1.
 
 The [walkthrough](as-built/code-walkthrough.md) names the small tests-first specialty-synonym exercise and exact verification commands. [Architecture](as-built/architecture.md), [decisions](../product/decisions.md), [milestones](milestones.md) and [next steps](../product/next-steps.md) supply supporting detail. Capture may continue after the coding checkpoint; no assigned-window compliance statement is established.
+
+
+ApprovedPersonafollowon:8716779 actualCLI andMac/MintyIAB supportKnown/Missing/Outcome, invalid99/context, numericselection andkeyboardConfirm passed.118tests/demosbothfreshhosts. Selectedhypotheses/impact canonical [Personas](../product/personas.md); no deliveryconsole orrealuservalidationclaim.

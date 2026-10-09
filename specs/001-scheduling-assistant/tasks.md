@@ -259,3 +259,10 @@ Application e0996c1:114tests and both demos pass on fresh Mac/Minty clones; actu
 
 
 Post-three-hour reconciliation: directOperator requested RC-1 withoutCLIcoverage, then resolvedCLI andRC-2. GenuineactualCLI2/8/3-turnflows passedbothfreshhosts at3a3091c; bookingexactlyonePOST201, no-matchzeroPOST, decline/reselect/currentconsent/repeatguardpassed. Applicatione0996c1unchanged.114tests+demos+final-sourceIABevidence remainsvalid. Required68taskscomplete; actualcontinuousvideo andfollow-onPersonaadoption remain honestlyseparate. RC-2 exactsource/timestamp recordedinannotatedtag; no public/production/assigned-windowclaim.
+
+
+## Approved focused Persona follow-on —2026-10-09
+
+- [x] T069 Retain exact Jules/Ellie-Rae/Morgan-Rae/Sam-Rae pins, required ancestors/revisions and cards locally, map native stories and preserve hypothesis/noauthority boundaries. Introductioncommit667a08b and immutable `poc/personas-introduced-v1` privately pushed/peeledverified; historicalbootstrap untouched.
+- [x] T070 Review concrete Persona behavior and write meaningful tests first. Invalid-number context and failed-model consent already passed; Morgan’s support-outcome/missing-field gap failed before the repair. Implement safe local Known/Missing/Bookingoutcome projection preserving actual certainty/unknownwarning/no-private/noqueued behavior; extend actualHTTP lost-response regression. Application8716779;118tests+demos pass.
+- [x] T071 Qualify affected actualCLI and actualMac/MintyIAB missingDOB/support, invalid99/currentchoices, shortnumericselection, keyboardconfirmation and completedsupport outcome. Freshhosts118tests+demos/strictcheck pass; finalize docs/mapping/verification and nextsteps, keep videoONHOLD. No new backend/console/transfer/user-validationclaim. Immutable impact/finalRC source and timestamps belong to milestone annotations.

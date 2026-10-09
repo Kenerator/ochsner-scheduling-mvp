@@ -21,7 +21,7 @@ The demos run the actual supplied HTTP service on isolated ephemeral ports with 
 - Requirements and execution: [spec](specs/001-scheduling-assistant/spec.md), [plan](specs/001-scheduling-assistant/plan.md), [tasks](specs/001-scheduling-assistant/tasks.md), [validation guide](specs/001-scheduling-assistant/quickstart.md).
 - Use: [setup](docs/user/setup.md), [usage and limitations](docs/user/usage.md), [synthetic reference fixtures](vendor/scheduling-reference/data/README.md).
 - Design: [decisions](docs/product/decisions.md), [code walkthrough](docs/internal/as-built/code-walkthrough.md), [architecture](docs/internal/as-built/architecture.md), [UI assets](docs/internal/ui-assets.md).
-- Priorities: [backlog](docs/product/backlog.md), [roadmap](docs/product/roadmap.md), [work increment](docs/product/sprint-planning.md), [next steps](docs/product/next-steps.md), [pending Personas](docs/product/personas.md).
+- Priorities: [backlog](docs/product/backlog.md), [roadmap](docs/product/roadmap.md), [work increment](docs/product/sprint-planning.md), [next steps](docs/product/next-steps.md), [selected Persona hypotheses](docs/product/personas.md).
 - Review and demonstration: [video notes](docs/internal/video-notes.md), [milestones](docs/internal/milestones.md), [credential guard](docs/internal/security.md), [optional adversarial review](docs/internal/reviews/adversarial-review.md).
 
 Existing appointment lookup and recorded handoff are deferred. Assistance means contacting clinic scheduling staff; no transfer is claimed. State and the unknown-write guard are process-local, with no production durability or automatic reconciliation. Approved local branding is for internal review; external publication requires separate authorization.
