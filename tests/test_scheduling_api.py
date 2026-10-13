@@ -341,19 +341,37 @@ class BookingContractTests(unittest.TestCase):
 
 
 class ReferenceHTTPComponentTests(unittest.TestCase):
-    def test_actual_reference_search_availability_booking_conflict_and_outage(self):
+    def test_actual_reference_search_availability_booking_conflict_and_outage(self, *, _delay_audit=False, _omit_audit=False):
         import importlib.util
         from pathlib import Path
-        from threading import Thread
+        from threading import Event, Thread
         source = Path(__file__).resolve().parents[1] / 'vendor/scheduling-reference/mock-api/server.py'
         spec = importlib.util.spec_from_file_location('scheduling_reference_component', source)
         reference = importlib.util.module_from_spec(spec)
         spec.loader.exec_module(reference)
         events = []
+        audit_complete = {status: Event() for status in (201, 409, 503)}
+        release_audit = Event()
+        delayed_status = 503 if _delay_audit is True else _delay_audit
+        omitted_status = 503 if _omit_audit is True else _omit_audit
+        if _delay_audit:
+            original_wait = audit_complete[delayed_status].wait
+            # A regression gate releases only when the observer actually waits.
+            # Without the completion barrier, the exact event assertion fails.
+            def wait_for_audit(timeout):
+                release_audit.set()
+                return original_wait(timeout)
+            audit_complete[delayed_status].wait = wait_for_audit
         class Handler(reference.Handler):
             store = reference.Store()
             def audit(self, method, path, status, ms):
+                if status == omitted_status:
+                    return
+                if status == delayed_status:
+                    release_audit.wait(timeout=2)
                 events.append((method, path, status))
+                if method == 'POST' and status in audit_complete:
+                    audit_complete[status].set()
         server = reference.ThreadingHTTPServer(('127.0.0.1', 0), Handler)
         thread = Thread(target=lambda: server.serve_forever(poll_interval=0.01), daemon=True)
         thread.start()
@@ -367,21 +385,40 @@ class ReferenceHTTPComponentTests(unittest.TestCase):
             slots = api.availability(found[0].patient_id, Preferences('primary_care', 'downtown'))
             chosen = next(item for item in slots if item.slot_id == 'slot_4001')
             booked = api.book(found[0].patient_id, chosen)
+            # Each response precedes its audit; observe it before the next POST.
+            self.assertTrue(audit_complete[201].wait(timeout=2), 'reference audit did not complete')
             self.assertEqual(booked.start_time, chosen.start_time)
             self.assertEqual(booked.patient_id, found[0].patient_id)
             with self.assertRaises(APIError) as caught:
                 api.book(found[0].patient_id, chosen)
             self.assertEqual((caught.exception.reason, caught.exception.unknown), ('conflict', False))
+            self.assertTrue(audit_complete[409].wait(timeout=2), 'reference audit did not complete')
             outage = SchedulingAPI(api.base_url, scenario='api_failure')
             with self.assertRaises(APIError) as caught:
                 outage.book(found[0].patient_id, chosen)
             self.assertEqual((caught.exception.reason, caught.exception.unknown), ('unavailable', False))
+            self.assertTrue(audit_complete[503].wait(timeout=2), 'reference audit did not complete')
             self.assertEqual([event[2] for event in events if event[0] == 'POST'], [201, 409, 503])
         finally:
+            release_audit.set()
             server.shutdown()
             server.server_close()
             thread.join(timeout=2)
             self.assertFalse(thread.is_alive())
+
+    def test_delayed_reference_audit_is_observed_before_exact_event_assertion(self):
+        self.test_actual_reference_search_availability_booking_conflict_and_outage(_delay_audit=True)
+
+    def test_delayed_booking_audit_is_observed_before_next_post(self):
+        self.test_actual_reference_search_availability_booking_conflict_and_outage(_delay_audit=201)
+
+    def test_delayed_conflict_audit_is_observed_before_next_post(self):
+        self.test_actual_reference_search_availability_booking_conflict_and_outage(_delay_audit=409)
+
+    def test_missing_reference_audit_fails_with_bounded_completion_error(self):
+        for status in (201, 409, 503):
+            with self.subTest(status=status), self.assertRaisesRegex(AssertionError, 'audit did not complete'):
+                self.test_actual_reference_search_availability_booking_conflict_and_outage(_omit_audit=status)
 
 
 if __name__ == '__main__':
