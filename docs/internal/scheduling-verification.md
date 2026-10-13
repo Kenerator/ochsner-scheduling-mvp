@@ -54,3 +54,12 @@ Application `8716779d10c4498cdd3cf3a8d62f7fd1c03d0537`; intro667a08b. Exactselec
 FreshMac118tests1.371s; Minty118tests4.124s; bothdemos+strictcheckpass at8716779. ActualMacCLI gpt5.4mini oneprocess7turns/10.155s: bookphonewithoutDOB→humanhelp retainedKnownprefs/MissingDOB/notattempted; reset→fullidentity→firstoption→yes→humanhelp retainedcompleted/noqueued. All12safeassertionspass, exactlyonebookedmessage, exit0/stderrempty. ActualMac andMintyIAB repeatedmissingDOB/help, reset, fullidentity, invalid99 retainedall3returnedoptions, numericchoice, keyboardReturnoncurrentConfirm, validatedbookedresult and humanhelp→completed. No model/servicevalues beyondsyntheticfactsinvented. Existing knownrejected/unknown summary branches have meaningfultests/actualHTTPcoverage; no claim of separate liveunknownUIfaultinjection.
 
 Video remainsONHOLD. Actualstillimages may be supplied afterfinalRCunderdirectOperatorgrant; screenshots do notclaimcontinuousvideo. SelectedPersonas remainhypotheses, notrealuservalidation. Finalfollowoncode qualified; docs-onlyfinalcommit doesnotchange applicationbytes.
+
+
+## Model-first launcher candidate — 2026-10-12
+
+Runtime1.0.0/source `b7875452e3a999ca69ce170822c66e7f679b4442`, clean reviewed delivery `6e89464582dd62a977aaec778c8d6f8a0adf25c7`, exact four module hashes verified before copy. [Consumer manifest](../../poc-launch.manifest.json) binds the local explicit-model configuration and shared manifest. No vault lookup repeated; SM centrally supplied the nonsecret notes-field selection for the exact dedicated item.
+
+On macOS ARM/CPython3.12.12, missing-bundle consumer tests first failed; installed candidate passes17 launcher tests and the full135-test project suite. Both unchanged scripted actual supplied-HTTP demos pass (success exactly1POST201, failure0POST), strict Marimo check passes. Tests use synthetic credentials/fake model transport to establish actual CLI and browser constructor/model routing; real child tests start/reap only their ephemeral vendor mock and real CLI at EOF, including cancellation cleanup and foreign-listener refusal. Help/doctor do not retrieve keys, start services or call a model. Application/vendor source unchanged from `ff24d2d2`.
+
+A read-only SHA-pinned standard macOS workflow supplies candidate-bound offline CI; its actual result and SM independent final review are pending in T075. No Linux/Windows launcher lifecycle, genuine model call, fresh browser interaction, benchmark or new RC is claimed. Historical application evidence above retains its exact source/date/limits.

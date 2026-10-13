@@ -10,3 +10,8 @@ Updated 2026-10-08. Approved lane: genuine AI interpretation, supplied reference
 - Runtime accepts environment OPENAI_API_KEY and an explicit configurable model. Shared account capability evidence supports gpt-5.4-mini; candidate-specific live flows still require qualification. No Bitwarden runtime dependency or raw prompt/transcript/identity/secret logging.
 - Use approved cached Ochsner logo/colors only for internal review. No public distribution grant. UI loopback28180; independent reference API4010; check ports before binding.
 - State is process-local. Mock identity matching is not production authentication. Operator owns effort-window compliance and public submission. No unsupported assigned-window/readiness claim.
+
+
+## Approved launch boundary — 2026-10-12
+
+The normal Ochsner wrapper is model-first and uses only the dedicated `[Env] (Ochsner PoC) OPENAI_API_KEY` notes field through a configured trusted helper. Original direct CLI/UI entrypoints remain environment-only. MVP still requires an explicit model, retains CLI override precedence and supports only scripted no-call demos, not interactive offline substitution. The pinned shared runtime owns its children and fails on occupied ports without disrupting foreign services; no scheduling/identity/consent behavior changes. Historical qualification is not new launcher/live evidence. Public visibility and notices remain outside this delta.

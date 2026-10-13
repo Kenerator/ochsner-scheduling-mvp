@@ -121,3 +121,12 @@ All findings fixed under standing fix-all direction: T059 now requires fresh aut
 
 
 Approved follow-on actual design: `Session._support_context` projects allowlisted supported preferences, missing matching field names and `_booking_outcome`; process ledger unknown takes precedence. This is local user-readable guidance with no new service/transfer. Existing adapters remain thin. See native spec follow-on and as-built source8716779.
+
+
+## Launch-only integration delta — 2026-10-12
+
+Consume SM's reviewed, self-contained `tools/poc-runtime/` export without forking its implementation. Add project `poc-launch.json` with adapter `mvp`, CLI default, explicit/configured model semantics and the exact Ochsner credential item. Runtime construction targets the existing `scheduling_assistant` CLI or `apps/scheduling_app.py`; `SCHEDULING_API_URL` is browser-only and CLI uses `--api-base-url`. The mock remains `vendor/scheduling-reference/mock-api/server.py`.
+
+Write consumer tests before installation: verify manifest hashes, request overrides/errors, actual existing OpenAIInterpreter construction with injected transport, no inherited-key fallback, role environments, and help/doctor no-call behavior. Preserve existing no-call demos. Run the compatible project interpreter, full suite, demos and strict Marimo check after reviewed runtime integration. No scheduling package change is planned unless an actual launch seam requires it.
+
+Use the clean sole-owner checkout on `codex/model-first-launcher` from `ff24d2d2`; ordinary branch/PR integration must respect current main and immutable-tag rulesets. SM performs one independent final candidate diff review before integration. Installation awaits the reviewed shared manifest and serialized credential-field preflight coordination. No private coordinator plan or credential values are copied into the public consumer.

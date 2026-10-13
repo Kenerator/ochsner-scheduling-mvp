@@ -183,3 +183,17 @@ Origin: Operator-approved reuse of shared pinned hypotheses, not supplied client
 - Morgan-Rae: a request for human help presents local known supported preferences, missing matching field names and actual booking certainty. It never echoes private identity values/candidates, erases unknown/no-retry truth, performs a transfer or claims queued delivery. This drove a tests-first implementation repair. Completed/known-rejected/unknown outcomes remain distinguishable.
 
 118tests, actual suppliedHTTP lost-response support regression, fresh-host demos, actualCLI support checks and actualMac/MintyIAB numbered recovery/keyboard confirmation/support guidance qualify this follow-on at application8716779. No actual-user validation or accessibility certification is inferred.
+
+
+## Approved model-first launch follow-on — 2026-10-12
+
+Origin: Operator-approved five-consumer launch plan, Task L4, executed by the existing MVP owner under SM coordination. This adds a launch boundary to FR-012/US4; it does not expand scheduling or identity behavior.
+
+- The normal Ochsner wrapper defaults to actual model mode, resolving only `[Env] (Ochsner PoC) OPENAI_API_KEY` through the trusted local helper. It ignores inherited API keys and never substitutes offline behavior on failure.
+- MVP still requires an explicit model: `--model` overrides `SCHEDULING_MODEL`; no default model is invented. CLI is the default interface; the existing Marimo interface remains optional selection.
+- Only the model-hosting child receives the scalar key; the supplied mock receives no model/vault credentials, and its raw audit output is suppressed. No key appears in argv, files, logs or browser configuration.
+- Help/doctor and tests make no vault/model calls. Interactive launcher `--offline` is unsupported; unchanged scripted success/failure demos are the explicit no-call alternative.
+- Preflight and owned-child cleanup must not disrupt foreign listeners or Operator services. No startup model request, budget change, release or historical-tag change is selected.
+- The installed runtime must match SM's reviewed shared manifest. Real CLI/UI adapter construction with fake model transport establishes routing; it does not establish new live model/browser performance qualification. Direct application entrypoints retain their existing environment-only credential contract.
+
+Status: reviewed shared runtime1.0.0/source `b7875452` installed from delivery `6e894645`; consumer no-call qualification and final protected integration tracked in T072–T075.
