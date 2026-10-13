@@ -1,11 +1,11 @@
 # Local setup
 
-Updated 2026-10-09. Run commands from the repository root. Verify **Python 3.11+** before creating the environment; substitute an explicit compatible executable if `python3` selects an older version. Development has used CPython 3.12.12 on macOS ARM. Fresh authenticated GitHub clones on macOS ARM and Minty Linux passed installation,114 tests and both demos at e0996c1. Genuine CLI qualification is recorded at2efd0f6; final-source UI requalification passed on both hosts. See [verification](../internal/scheduling-verification.md) for the completed post-checkpoint liveCLI coverage.
+Updated 2026-10-12. Run commands from the repository root. Verify **Python 3.11+** before creating the environment; substitute an explicit compatible executable if `python3` selects an older version. Development has used CPython 3.12.12 on macOS ARM. Fresh authenticated GitHub clones on macOS ARM and Minty Linux passed installation,114 tests and both demos at e0996c1. Genuine CLI qualification is recorded at2efd0f6; final-source UI requalification passed on both hosts. See [verification](../internal/scheduling-verification.md) for the completed post-checkpoint liveCLI coverage.
 
 ```sh
 git clone https://github.com/Kenerator/ochsner-scheduling-mvp.git
 cd ochsner-scheduling-mvp
-# Authenticate with an account granted access to this private repository.
+# The repository is public; authentication is needed only for authorized writes.
 # Standard SSH alternative: git@github.com:Kenerator/ochsner-scheduling-mvp.git
 python3.12 --version
 python3.12 -m venv .venv
@@ -13,7 +13,37 @@ python3.12 -m venv .venv
 .venv/bin/python -m scheduling_assistant --help
 ```
 
-The installation declares Marimo 0.25.0. The supplied scheduling service uses the Python standard library. Original intake documents, the bootstrap tool environment and Bitwarden are not runtime prerequisites.
+The installation declares Marimo 0.25.0. The supplied scheduling service uses the Python standard library. Original intake documents and the bootstrap tool environment are not runtime prerequisites. The normal Ochsner launcher uses the trusted Bitwarden helper; the direct application entrypoints below remain environment-only alternatives.
+
+## Normal Ochsner launch (model-first)
+
+Run from this repository root with the project Python. Configure the **path**, not the secret value, to your already-installed trusted `bw-get-secret` helper. It must be a regular executable; do not supply a shell command. The launcher reads only **`[Env] (Ochsner PoC) OPENAI_API_KEY`**, field **`notes`**. It never substitutes an inherited `OPENAI_API_KEY` or the generic vault item.
+
+```sh
+export POC_SECRET_HELPER=/absolute/path/to/trusted/bw-get-secret.sh
+export SCHEDULING_MODEL=gpt-5.4-mini
+.venv/bin/python tools/poc-runtime/launch.py --help
+.venv/bin/python tools/poc-runtime/launch.py --doctor
+.venv/bin/python tools/poc-runtime/launch.py
+```
+
+The model name is an explicit choice, not an automatic default or availability guarantee. `--model MODEL` overrides `SCHEDULING_MODEL`; missing/invalid model configuration fails before credential lookup. CLI is the default. For Marimo:
+
+```sh
+.venv/bin/python tools/poc-runtime/launch.py --interface browser --ui-port 28180
+```
+
+The shared wrapper's browser default is **28456** if `--ui-port` is omitted. API default is **4010**; `--api-port PORT` selects a different free loopback port for its owned mock. Do not start a second API manually when using this wrapper. Occupied/duplicate ports fail safely; no foreign listener is stopped. Open the printed loopback URL yourself; the launcher does not open a browser or dashboard.
+
+`--help` and `--doctor` retrieve no credential, start no service and make no model request. Doctor checks configuration/dependencies/helper executable/ports, not vault availability or model access. Normal startup privately resolves the scalar key, starts the unchanged synthetic API and real CLI/Marimo model host, and makes no startup model request. Only the model host receives the key; the mock receives no model/vault credentials and its raw request audit is suppressed. Ctrl-C cleans up only this launch's owned children. Cleanup failures report uncertainty; never kill another session to free a port.
+
+There is **no interactive MVP offline mode**: `--offline` fails explicitly. Use the scripted demos below for a no-call rehearsal. Missing/locked/ambiguous credentials fail with safe guidance; they never select rehearsal or another model. Keys remain in process memory; Python cannot promise zeroization of immutable strings. Do not capture secret-bearing environments or helper output.
+
+The [shared manifest](../../tools/poc-runtime/export-manifest.json) pins runtime1.0.0/source `b7875452`; [consumer binding](../../poc-launch.manifest.json) binds this config to the reviewed delivery `6e894645`. Consumer qualification is currently macOS ARM/Python3.12.12 with `lsof` on PATH. Linux/Windows launcher lifecycle and fresh live model/browser flows have not been qualified by this follow-on; historical application evidence retains its original date/source in [verification](../internal/scheduling-verification.md).
+
+## Direct application entrypoints
+
+These explicit reviewer alternatives retain the original environment-only credential contract and have no Bitwarden dependency. They do not use the managed wrapper or its owned cleanup. Start and stop your own reference service, then choose the CLI or UI below.
 
 ## Check local ports
 

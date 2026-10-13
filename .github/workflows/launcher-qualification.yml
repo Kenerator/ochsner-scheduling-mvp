@@ -1,0 +1,31 @@
+name: Launcher qualification
+on:
+  pull_request:
+  push:
+    branches: [main, 'codex/**']
+permissions:
+  contents: read
+jobs:
+  no-call-qualification:
+    runs-on: macos-14
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1 # v6
+        with:
+          python-version: '3.12'
+      - name: Install declared project environment
+        run: |
+          python -c 'import platform; print(platform.platform(), platform.machine())'
+          python -m venv .venv
+          .venv/bin/python -m pip install -e .
+      - name: Tests and unchanged no-call demos
+        env:
+          PYTHONPATH: src
+        run: |
+          .venv/bin/python -m unittest discover -s tests -v
+          .venv/bin/python scripts/demo_scheduling.py --scenario success
+          .venv/bin/python scripts/demo_scheduling.py --scenario failure
+          .venv/bin/marimo check --strict apps/scheduling_app.py
