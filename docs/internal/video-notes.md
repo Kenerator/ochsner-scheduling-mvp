@@ -104,3 +104,8 @@ Requestedstills: branded currentproviderresults/mode and strongest truthfulsuppo
 ## Launch delta — 2026-10-12
 
 Normal Ochsner startup now uses the pinned model-first wrapper with an explicit model and dedicated vault notes field; direct application alternatives and no-call demos remain available. [Setup](../user/setup.md), [runtime manifest](../../tools/poc-runtime/export-manifest.json) and [consumer tests](../../tests/test_runtime_launcher.py) document the actual boundary. This candidate adds no fresh live AI/browser qualification, capture, video or release; historical footage/stills and source claims must retain their original identities. Video remains on hold.
+
+
+## Credential policy update — 2026-10-20
+
+Ochsner-key use is paused; [current setup](../user/setup.md) selects our exact own-account notes item with reviewed source `20e3dd56`. Offline adaptation creates no new live qualification, runtime relaunch, screenshot or recording. Historical source/key evidence is preserved and cannot be relabeled as own-key execution. Video remains on hold.

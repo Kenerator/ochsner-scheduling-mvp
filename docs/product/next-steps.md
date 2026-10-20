@@ -8,3 +8,6 @@ Optional lookup, recordedhandoff and visualrefinement are deferred. Productionau
 
 
 2026-10-12 launch follow-on: installed reviewed shared model-first runtime with explicit MVP model and exact dedicated notes field. SM final review, exact-candidate CI and normal protected [PR1](https://github.com/Kenerator/ochsner-scheduling-mvp/pull/1) integration are complete at `a4496396`; [T075](../../specs/001-scheduling-assistant/tasks.md) records closure. New live/platform/browser qualification is not selected or claimed. Existing user-validation and production limitations remain deferred.
+
+
+2026-10-20 own-key policy: Ochsner-source use is paused. Offline candidate selects our exact `[Env] OPENAI_API_KEY`/notes with reviewed source `20e3dd56`; [T076–T079](../../specs/001-scheduling-assistant/tasks.md) own qualification/review/integration status. Live model-enabled start stays held until own-account controls and candidate selection; no fresh paid proof is inferred. Historical Minty runtime status remains unknown because the host was unreachable.
