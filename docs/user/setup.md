@@ -1,6 +1,8 @@
+> Credential policy changed 2026-10-20: Ochsner-supplied-key use is paused. This project explicitly selects our Secure Note `[Env] OPENAI_API_KEY`, field `notes`; it never falls back from another item or inherited key. The reviewed runtime supports this selection. **Live model-enabled launch remains on hold until own-account controls and the affected candidate are selected; offline adoption is not live-use qualification.**
+
 # Local setup
 
-Updated 2026-10-12. Run commands from the repository root. Verify **Python 3.11+** before creating the environment; substitute an explicit compatible executable if `python3` selects an older version. Development has used CPython 3.12.12 on macOS ARM. Fresh authenticated GitHub clones on macOS ARM and Minty Linux passed installation,114 tests and both demos at e0996c1. Genuine CLI qualification is recorded at2efd0f6; final-source UI requalification passed on both hosts. See [verification](../internal/scheduling-verification.md) for the completed post-checkpoint liveCLI coverage.
+Updated 2026-10-20. Run commands from the repository root. Verify **Python 3.11+** before creating the environment; substitute an explicit compatible executable if `python3` selects an older version. Development has used CPython 3.12.12 on macOS ARM. Fresh authenticated GitHub clones on macOS ARM and Minty Linux passed installation,114 tests and both demos at e0996c1. Genuine CLI qualification is recorded at2efd0f6; final-source UI requalification passed on both hosts. See [verification](../internal/scheduling-verification.md) for the completed post-checkpoint liveCLI coverage.
 
 ```sh
 git clone https://github.com/Kenerator/ochsner-scheduling-mvp.git
@@ -17,7 +19,7 @@ The installation declares Marimo 0.25.0. The supplied scheduling service uses th
 
 ## Normal Ochsner launch (model-first)
 
-Run from this repository root with the project Python. Configure the **path**, not the secret value, to your already-installed trusted `bw-get-secret` helper. It must be a regular executable; do not supply a shell command. The launcher reads only **`[Env] (Ochsner PoC) OPENAI_API_KEY`**, field **`notes`**. It never substitutes an inherited `OPENAI_API_KEY` or the generic vault item.
+Run from this repository root with the project Python. Configure the **path**, not the secret value, to your already-installed trusted `bw-get-secret` helper. It must be a regular executable; do not supply a shell command. The launcher reads only our Secure Note **`[Env] OPENAI_API_KEY`**, field **`notes`**. This is an explicit policy selection, not fallback from the paused Ochsner item, a helper failure or inherited `OPENAI_API_KEY`. Historical source compatibility in the shared validator grants no permission to use that source. The commands below document the interface for separately authorized operation; the current live-launch hold still applies.
 
 ```sh
 export POC_SECRET_HELPER=/absolute/path/to/trusted/bw-get-secret.sh
@@ -39,7 +41,7 @@ The shared wrapper's browser default is **28456** if `--ui-port` is omitted. API
 
 There is **no interactive MVP offline mode**: `--offline` fails explicitly. Use the scripted demos below for a no-call rehearsal. Missing/locked/ambiguous credentials fail with safe guidance; they never select rehearsal or another model. Keys remain in process memory; Python cannot promise zeroization of immutable strings. Do not capture secret-bearing environments or helper output.
 
-The [shared manifest](../../tools/poc-runtime/export-manifest.json) pins runtime1.0.0/source `b7875452`; [consumer binding](../../poc-launch.manifest.json) binds this config to the reviewed delivery `6e894645`. Consumer qualification is currently macOS ARM/Python3.12.12 with `lsof` on PATH. Linux/Windows launcher lifecycle and fresh live model/browser flows have not been qualified by this follow-on; historical application evidence retains its original date/source in [verification](../internal/scheduling-verification.md).
+The [shared manifest](../../tools/poc-runtime/export-manifest.json) pins runtime1.0.0/source `20e3dd56`; [consumer binding](../../poc-launch.manifest.json) binds this config to the reviewed delivery `8b4ecef2`. Consumer qualification is currently macOS ARM/Python3.12.12 with `lsof` on PATH. Linux/Windows launcher lifecycle and fresh live model/browser flows have not been qualified by this follow-on; historical application evidence retains its original date/source and credential identity in [verification](../internal/scheduling-verification.md). No real vault lookup, own-account model call or runtime relaunch was performed for this adaptation. No new allowance, budget reset or unbounded replacement-account spend is granted. The historical task-owned Minty runtime remains unverified because its host was unreachable; local inspection found no MVP model process.
 
 ## Direct application entrypoints
 

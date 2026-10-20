@@ -15,3 +15,8 @@ Updated 2026-10-08. Approved lane: genuine AI interpretation, supplied reference
 ## Approved launch boundary — 2026-10-12
 
 The normal Ochsner wrapper is model-first and uses only the dedicated `[Env] (Ochsner PoC) OPENAI_API_KEY` notes field through a configured trusted helper. Original direct CLI/UI entrypoints remain environment-only. MVP still requires an explicit model, retains CLI override precedence and supports only scripted no-call demos, not interactive offline substitution. The pinned shared runtime owns its children and fails on occupied ports without disrupting foreign services; no scheduling/identity/consent behavior changes. Historical qualification is not new launcher/live evidence. Public visibility and notices remain outside this delta.
+
+
+## Superseding own-key selection — 2026-10-20
+
+All Ochsner-supplied-key use is paused by direct Operator instruction. Our Secure Note `[Env] OPENAI_API_KEY`/`notes` is the explicitly selected source, never an inherited-key or helper-failure fallback. Earlier dedicated-key evidence remains historical, not own-key qualification. The frozen runtime's hardcoded-item limitation was reported to SM before shared changes; config fails closed pending reviewed support. This grants no live launch, paid call, model benchmark or scheduling effect.

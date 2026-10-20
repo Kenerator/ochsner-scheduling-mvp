@@ -197,3 +197,8 @@ Origin: Operator-approved five-consumer launch plan, Task L4, executed by the ex
 - The installed runtime must match SM's reviewed shared manifest. Real CLI/UI adapter construction with fake model transport establishes routing; it does not establish new live model/browser performance qualification. Direct application entrypoints retain their existing environment-only credential contract.
 
 Status: reviewed shared runtime1.0.0/source `b7875452` installed from delivery `6e894645`; consumer no-call qualification and final protected integration tracked in T072–T075.
+
+
+## Superseding credential policy — 2026-10-20
+
+Direct Operator direction pauses every Ochsner-supplied-key retrieval/request and explicitly selects our own Secure Note `[Env] OPENAI_API_KEY`, field `notes`. This supersedes the dedicated-item choice above without changing historical source/evidence. Selection is not fallback from a failed helper, inherited/stale environment or missing Ochsner item. Model selection, identity/consent/effect protection and budgets remain unchanged; no new paid/live qualification or scheduling effect is selected. The project fails closed on invalid or failed selection. SM resolved the reported frozen-runtime capability gap with reviewed source `20e3dd56`, delivery `8b4ecef2`; only that exact bundle is adopted. Live model-enabled start and new-source qualification remain held pending own-account controls and affected review.

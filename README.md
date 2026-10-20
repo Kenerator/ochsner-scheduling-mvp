@@ -1,8 +1,10 @@
+> Credential policy changed 2026-10-20: Ochsner-supplied-key use is paused. This project explicitly selects our Secure Note `[Env] OPENAI_API_KEY`, field `notes`; it never falls back from another item or inherited key. The reviewed runtime supports this selection. **Live model-enabled launch remains on hold until own-account controls and the affected candidate are selected; offline adoption is not live-use qualification.**
+
 # Ochsner scheduling MVP
 
 A local AI scheduling assistant for synthetic provider lookup and appointment booking. A shared Python controller verifies patient matches, displays returned slots and requires a separate confirmation before booking. A CLI and Marimo conversation form use that same controller and the supplied independent reference API.
 
-Requires Python **3.11+**, an OpenAI API key in the process environment and an explicitly selected Responses model. Marimo is pinned in `pyproject.toml`; no database or rules engine is required. The normal Ochsner launcher resolves the exact dedicated Bitwarden item privately; direct application entrypoints remain environment-only alternatives. Use synthetic data only. This is an internal proof of concept; identity matching is not authentication.
+Requires Python **3.11+**, an OpenAI API key in the process environment and an explicitly selected Responses model. Marimo is pinned in `pyproject.toml`; no database or rules engine is required. The normal Ochsner launcher resolves the explicitly selected own-account Bitwarden item privately; direct application entrypoints remain environment-only alternatives. Use synthetic data only. This is an internal proof of concept; identity matching is not authentication.
 
 ## Start and verify
 

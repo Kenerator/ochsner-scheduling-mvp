@@ -130,3 +130,10 @@ Consume SM's reviewed, self-contained `tools/poc-runtime/` export without forkin
 Write consumer tests before installation: verify manifest hashes, request overrides/errors, actual existing OpenAIInterpreter construction with injected transport, no inherited-key fallback, role environments, and help/doctor no-call behavior. Preserve existing no-call demos. Run the compatible project interpreter, full suite, demos and strict Marimo check after reviewed runtime integration. No scheduling package change is planned unless an actual launch seam requires it.
 
 Use the clean sole-owner checkout on `codex/model-first-launcher` from `ff24d2d2`; ordinary branch/PR integration must respect current main and immutable-tag rulesets. SM performs one independent final candidate diff review before integration. Installation uses the exact reviewed shared manifest; SM centrally completed the serialized credential-field preflight. No private coordinator plan or credential values are copied into the public consumer.
+
+
+## Own-key policy adaptation — 2026-10-20
+
+Change only explicit consumer credential selection, reviewed qualification binding, offline tests and current instructions. The installed runtime1.0.0 hardcodes the retired item in both configuration validation and key resolution; report this capability gap to SM before any shared edit. Await SM's reviewed shared delivery instead of forking modules or adding a fallback. Keep original model semantics and all scheduling/vendor/runtime ownership controls; no vault lookup/model call is needed for offline config proof. Original-four dashboard/Flight Deck retrofit remains outside this credential-only scope.
+
+Own-key implementation: adopt exact four reviewed modules and export manifest from clean code/source `20e3dd56747797b35c082d109ac3bb0a7d7b1ebe`, metadata delivery `8b4ecef27273a8df72fcdabd1976f01ed35e523a`. All five supplied SHA256 values and committed bytes matched; unrelated Template working changes were excluded. Consumer config/binding and synthetic tests select our notes item explicitly. No shared fork, alternate credential mechanism, live query or scheduling change.

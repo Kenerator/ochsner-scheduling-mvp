@@ -115,7 +115,7 @@ class InstalledRuntimeContractTests(unittest.TestCase):
 
     def test_manifest_binds_exact_reviewed_runtime_bytes(self):
         manifest = json.loads((ROOT / "tools/poc-runtime/export-manifest.json").read_text())
-        self.assertEqual(manifest["source_revision"], "b7875452e3a999ca69ce170822c66e7f679b4442")
+        self.assertEqual(manifest["source_revision"], "20e3dd56747797b35c082d109ac3bb0a7d7b1ebe")
         self.assertEqual(manifest["source_worktree_state"], "clean")
         self.assertEqual(set(manifest["files"]), {
             "tools/poc-runtime/adapters.py", "tools/poc-runtime/credentials.py",
@@ -125,7 +125,7 @@ class InstalledRuntimeContractTests(unittest.TestCase):
 
     def test_consumer_manifest_binds_project_config_and_shared_manifest(self):
         binding = json.loads((ROOT / "poc-launch.manifest.json").read_text())
-        self.assertEqual(binding["runtime_delivery_revision"], "6e89464582dd62a977aaec778c8d6f8a0adf25c7")
+        self.assertEqual(binding["runtime_delivery_revision"], "8b4ecef27273a8df72fcdabd1976f01ed35e523a")
         self.assertEqual(set(binding["files"]), {"poc-launch.json", "tools/poc-runtime/export-manifest.json"})
         for name, digest in binding["files"].items():
             self.assertEqual(hashlib.sha256((ROOT / name).read_bytes()).hexdigest(), digest)
@@ -221,9 +221,34 @@ class InstalledRuntimeContractTests(unittest.TestCase):
             with patch.dict(os.environ, {"POC_SECRET_HELPER": str(helper), "OPENAI_API_KEY": PARENT_CANARY}):
                 key = self.credentials.resolve_key(self.config["credential"], run=fake_run)
             self.assertEqual(key, CANARY)
-            self.assertEqual(calls[0][0][1:], ["[Env] (Ochsner PoC) OPENAI_API_KEY", "notes"])
+            self.assertEqual(calls[0][0][1:], ["[Env] OPENAI_API_KEY", "notes"])
             self.assertNotIn("OPENAI_API_KEY", calls[0][1])
             self.assertEqual(len(calls), 1)
+
+    def test_selected_own_key_helper_failure_never_uses_inherited_key_or_second_item(self):
+        calls = []
+        with tempfile.TemporaryDirectory() as temp:
+            helper = Path(temp) / "fake-helper"
+            helper.write_text("#!/bin/sh\nexit 99\n")
+            helper.chmod(0o700)
+            def failed_run(argv, **kwargs):
+                calls.append(argv)
+                return subprocess.CompletedProcess(argv, 1, "", "synthetic private helper failure")
+            with patch.dict(os.environ, {"POC_SECRET_HELPER": str(helper), "OPENAI_API_KEY": PARENT_CANARY}), \
+                 self.assertRaises(self.credentials.LaunchError):
+                self.credentials.resolve_key(self.config["credential"], run=failed_run)
+        self.assertEqual(len(calls), 1)
+        self.assertEqual(calls[0][1:], ["[Env] OPENAI_API_KEY", "notes"])
+
+    def test_own_key_wrong_field_and_unknown_item_fail_before_helper(self):
+        for item, field in [("[Env] OPENAI_API_KEY", "auto"),
+                            ("[Env] OPENAI_API_KEY", "password"),
+                            ("[Env] unapproved-item", "notes")]:
+            selection = dict(self.config["credential"], item=item, field=field)
+            with self.subTest(item=item, field=field), \
+                 patch.object(self.credentials, "helper_executable", side_effect=AssertionError("helper probed")), \
+                 self.assertRaises(self.credentials.LaunchError):
+                self.credentials.resolve_key(selection)
 
     def test_help_and_doctor_do_not_resolve_credentials_or_start_services(self):
         with tempfile.TemporaryDirectory() as temp:
